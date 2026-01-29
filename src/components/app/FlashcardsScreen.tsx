@@ -4,6 +4,8 @@ import { useState, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { HeartIcon } from "./HeartIcon";
+import { KissIcon } from "./KissIcon";
 
 export function FlashcardsScreen() {
   const initialCards = useMemo(() => [
@@ -75,11 +77,22 @@ export function FlashcardsScreen() {
               zIndex: cards.length - index,
             }}
           >
-            <CardContent className="flex flex-col items-center justify-center text-center h-full p-6">
+            <CardContent className="relative flex flex-col items-center justify-center text-center h-full p-6 overflow-hidden">
               {flashcard.isFinal ? (
-                <p className="font-headline text-5xl md:text-6xl text-foreground whitespace-pre-line leading-tight">
-                  {flashcard.text}
-                </p>
+                <>
+                  <KissIcon className="absolute top-4 left-4 w-10 h-10 text-primary/20 -rotate-12" />
+                  <KissIcon className="absolute top-12 right-4 w-8 h-8 text-primary/10 rotate-12" />
+                  <KissIcon className="absolute bottom-20 left-6 w-6 h-6 text-primary/30 rotate-45" />
+                  <KissIcon className="absolute bottom-4 right-12 w-12 h-12 text-primary/20 -rotate-45" />
+                  <KissIcon className="absolute bottom-4 left-12 w-8 h-8 text-primary/10 rotate-12" />
+
+                  <div className="flex flex-col items-center justify-center gap-4">
+                    <p className="font-headline text-5xl md:text-6xl text-foreground whitespace-pre-line leading-tight">
+                      {flashcard.text}
+                    </p>
+                    <HeartIcon className="w-16 h-16 text-primary drop-shadow-lg" />
+                  </div>
+                </>
               ) : (
                 <p className="font-headline text-2xl text-foreground">
                   {flashcard.text}
