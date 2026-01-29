@@ -121,6 +121,10 @@ export default {
           '0%': { transform: 'scale(1)', opacity: '1' },
           '100%': { transform: 'translateY(-120vh) scale(0.5)', opacity: '0' },
         },
+        'shuffle-card-out': {
+          '0%': { transform: 'scale(1) translateY(0) rotate(0)', opacity: '1' },
+          '100%': { transform: 'translateY(-120vh) scale(0.8) rotate(10deg)', opacity: '0' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -133,6 +137,7 @@ export default {
         'balloon-float': 'balloon-float 15s linear forwards',
         'fill-in': 'fill-in 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards',
         'fly-out': 'fly-out 2s ease-in-out forwards',
+        'shuffle-card-out': 'shuffle-card-out 0.5s ease-in-out forwards',
       },
     },
   },
