@@ -117,6 +117,11 @@ export default {
           '0%': { transform: 'scale(0)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
+        'pack-in-from-bottom': {
+          '0%': { transform: 'translateY(100vh) scale(0.5)', opacity: '0' },
+          '70%': { transform: 'translateY(0) scale(1.1)', opacity: '1' },
+          '100%': { transform: 'translateY(0) scale(1)', opacity: '1' },
+        },
         'fly-out': {
           '0%': { transform: 'translateY(0) scale(1)', opacity: '1' },
           '100%': { transform: 'translateY(-120vh) scale(0.5)', opacity: '0' },
@@ -132,6 +137,7 @@ export default {
         'sway': 'sway ease-in-out infinite',
         'balloon-float': 'balloon-float 15s linear forwards',
         'fill-in': 'fill-in 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards',
+        'pack-in-from-bottom': 'pack-in-from-bottom 0.8s ease-out forwards',
         'fly-out': 'fly-out 2s ease-in-out forwards',
       },
     },

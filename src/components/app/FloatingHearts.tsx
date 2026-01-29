@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { HeartIcon } from './HeartIcon';
+import { cn } from '@/lib/utils';
 
 interface FloatingHeartsProps {
   onTransitionEnd: () => void;
@@ -11,45 +12,45 @@ interface Heart {
   id: number;
   style: React.CSSProperties;
   nickname: string;
-  size: number;
 }
 
 export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
   const [isFadingOut, setIsFadingOut] = useState(false);
-  
   const nicknames = useMemo(() => ["Sweetu", "Cutu", "Jaan", "Bhavika", "Bhavi", "Bhavu", "Bhavya"], []);
+  const [hearts, setHearts] = useState<Heart[]>([]);
 
-  const hearts = useMemo(() => {
+  const numCols = 12;
+  const numRows = 16;
+
+  useEffect(() => {
     const heartArray: Heart[] = [];
-    for (let i = 0; i < 300; i++) {
-      const size = Math.random() * 80 + 40; // 40px to 120px
-      const flyAwayDuration = Math.random() * 2 + 1.5; // 1.5s to 3.5s
-      const swayDuration = Math.random() * 4 + 3;
-      const swayAmount = Math.random() * 100 - 50;
-      const nickname = nicknames[Math.floor(Math.random() * nicknames.length)];
+    const totalHearts = numCols * numRows;
+    for (let i = 0; i < totalHearts; i++) {
+      const row = Math.floor(i / numCols);
+      // Stagger animation from bottom to top, with a slight horizontal wave
+      const animationDelay = `${(numRows - row - 1) * 80 + (i % numCols) * 20}ms`;
+      const nickname = nicknames[i % nicknames.length];
       heartArray.push({
         id: i,
-        size,
         nickname,
         style: {
-          width: `${size}px`,
-          height: `${size}px`,
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          animation: `fill-in 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards, sway ${swayDuration}s ease-in-out infinite, fly-out ${flyAwayDuration}s ease-in-out 1s forwards`,
-          '--sway-amount': `${swayAmount}px`,
-        } as React.CSSProperties,
+          animationDelay,
+        },
       });
     }
-    return heartArray;
+    setHearts(heartArray);
   }, [nicknames]);
 
   useEffect(() => {
-    // Start fading out after the hearts have been on screen for a bit.
+    // Wait for the fill animation to complete before starting the fade out
+    const fillTime = (numRows * 80) + 800; // Roughly numRows * stagger_delay + animation-duration
+    const holdTime = 1500; // How long to show the packed hearts
+
     const timer = setTimeout(() => {
       setIsFadingOut(true);
-      setTimeout(onTransitionEnd, 1000); // Wait for background fade before changing stage
-    }, 3500); // Total duration of animation scene
+      // Wait for fly-out animation to be mostly done before changing stage
+      setTimeout(onTransitionEnd, 2000); 
+    }, fillTime + holdTime);
 
     return () => clearTimeout(timer);
   }, [onTransitionEnd]);
@@ -59,18 +60,25 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
       className="absolute inset-0 bg-gradient-to-b from-background to-primary"
     >
         <div className={`absolute inset-0 bg-gradient-to-b from-accent to-primary transition-opacity duration-1000 ${isFadingOut ? 'opacity-100' : 'opacity-0'}`}></div>
-        <div className="absolute inset-0 overflow-hidden">
+        
+        <div className={`absolute inset-0 grid grid-cols-12 auto-rows-auto overflow-hidden`}>
             {hearts.map((heart) => (
-                <div key={heart.id} className="absolute -translate-x-1/2 -translate-y-1/2" style={heart.style}>
-                <div className="relative w-full h-full flex items-center justify-center">
-                    <HeartIcon className="w-full h-full text-primary/70" />
-                    <span 
-                        className="absolute text-white/90 font-headline text-center drop-shadow-md select-none"
-                        style={{ fontSize: `${heart.size / 4.5}px` }}
-                    >
-                        {heart.nickname}
-                    </span>
-                </div>
+                <div 
+                    key={heart.id} 
+                    className={cn(
+                        "relative flex items-center justify-center opacity-0 aspect-square", // Start with opacity 0, maintain aspect ratio
+                        isFadingOut ? 'animate-fly-out' : 'animate-pack-in-from-bottom'
+                    )}
+                    style={heart.style}
+                >
+                    <div className="relative w-full h-full flex items-center justify-center p-1">
+                        <HeartIcon className="w-full h-full text-primary/70" />
+                        <span 
+                            className="absolute text-white/90 font-headline text-center drop-shadow-md select-none text-[clamp(6px,1.5vw,14px)]"
+                        >
+                            {heart.nickname}
+                        </span>
+                    </div>
                 </div>
             ))}
         </div>
