@@ -6,8 +6,9 @@ import { FloatingHearts } from '@/components/app/FloatingHearts';
 import { WelcomeScreen } from '@/components/app/WelcomeScreen';
 import * as Tone from 'tone';
 import { useToast } from '@/hooks/use-toast';
+import { FlashcardsScreen } from '@/components/app/FlashcardsScreen';
 
-export type Stage = 'booting' | 'loaded' | 'transitioning' | 'welcome';
+export type Stage = 'booting' | 'loaded' | 'transitioning' | 'welcome' | 'flashcards';
 
 export default function Home() {
   const [stage, setStage] = useState<Stage>('booting');
@@ -54,6 +55,15 @@ export default function Home() {
     setStage('welcome');
   }, []);
 
+  useEffect(() => {
+    if (stage === 'welcome') {
+      const timer = setTimeout(() => {
+        setStage('flashcards');
+      }, 3000); // Wait 3 seconds before showing flashcards
+      return () => clearTimeout(timer);
+    }
+  }, [stage]);
+
   return (
     <main className="relative w-full h-dvh overflow-hidden bg-background">
       <BootScreen
@@ -68,7 +78,9 @@ export default function Home() {
         <FloatingHearts onTransitionEnd={handleTransitionEnd} />
       )}
       
-      {stage === 'welcome' && <WelcomeScreen name={name} />}
+      {(stage === 'welcome' || stage === 'flashcards') && <WelcomeScreen name={name} stage={stage} />}
+
+      {stage === 'flashcards' && <FlashcardsScreen />}
     </main>
   );
 }

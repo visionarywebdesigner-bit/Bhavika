@@ -1,12 +1,19 @@
 "use client";
 
+import { Stage } from "@/app/page";
+import { cn } from "@/lib/utils";
+
 interface WelcomeScreenProps {
   name: string;
+  stage: Stage;
 }
 
-export function WelcomeScreen({ name }: WelcomeScreenProps) {
+export function WelcomeScreen({ name, stage }: WelcomeScreenProps) {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-accent to-primary animate-fade-in">
+    <div className={cn(
+      "absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-accent to-primary transition-opacity duration-1000",
+      stage === 'welcome' ? 'animate-fade-in' : 'opacity-0'
+    )}>
       <div className="text-center">
         <h1 className="text-4xl md:text-6xl font-headline text-primary-foreground mb-4 drop-shadow-md animate-fade-in-up">
           To my Sweetu, {name}
