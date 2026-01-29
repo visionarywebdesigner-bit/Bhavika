@@ -97,7 +97,7 @@ export function BootScreen({
           }
           return p + 1;
         });
-      }, 35);
+      }, 50);
       return () => clearInterval(interval);
     }
   }, [stage, handleLoadingCompleteWithDelay]);
@@ -116,10 +116,11 @@ export function BootScreen({
       <HeartIcon className="absolute -bottom-10 -right-6 w-24 h-24 text-accent/50 opacity-50 -rotate-12" />
       
       {/* Balloons */}
-      <div className="absolute inset-0">
-          <BalloonIcon className="w-24 h-24 absolute bottom-0 left-[10%] text-primary/40 animate-balloon-float animation-delay-1000" />
-          <BalloonIcon className="w-32 h-32 absolute bottom-0 right-[15%] text-accent/80 animate-balloon-float animation-delay-3000" />
-          <BalloonIcon className="w-20 h-20 absolute bottom-0 left-[30%] text-primary/60 animate-balloon-float animation-delay-5000" />
+      <div className="absolute inset-0 pointer-events-none">
+          <BalloonIcon className="w-24 h-24 absolute bottom-0 left-[15%] text-primary/40 animate-balloon-float animation-delay-1000" />
+          <BalloonIcon className="w-32 h-32 absolute bottom-0 right-[20%] text-accent/80 animate-balloon-float animation-delay-3000" />
+          <BalloonIcon className="w-20 h-20 absolute bottom-0 left-[50%] text-primary/60 animate-balloon-float animation-delay-5000" />
+          <BalloonIcon className="w-28 h-28 absolute bottom-0 right-[45%] text-accent/60 animate-balloon-float animation-delay-7000" />
       </div>
 
 
