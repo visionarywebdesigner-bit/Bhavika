@@ -175,7 +175,7 @@ export function BootScreen({
             My heart only beats for you
           </p>
           <p className="mt-6 font-body text-lg text-foreground/80 animate-fade-in-up animation-delay-300">
-            Tap my heart 💗
+            Take my Heart 💗
           </p>
         </div>
       </div>
