@@ -12,7 +12,7 @@ export function WelcomeScreen({ name }: WelcomeScreenProps) {
           To my Sweetu, {name}
         </h1>
         <p className="text-lg md:text-2xl font-body text-primary-foreground/90 animate-fade-in-up animation-delay-300">
-          to my world. to the one who took my heart
+          to my world, to the one who took my heart
         </p>
       </div>
     </div>

@@ -65,7 +65,7 @@ export default function Home() {
       />
 
       {stage === 'transitioning' && (
-        <FloatingHearts name={name} onTransitionEnd={handleTransitionEnd} />
+        <FloatingHearts onTransitionEnd={handleTransitionEnd} />
       )}
       
       {stage === 'welcome' && <WelcomeScreen name={name} />}
