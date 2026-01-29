@@ -21,7 +21,7 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
   const [hearts, setHearts] = useState<Heart[]>([]);
   const [isAnimatingIn, setIsAnimatingIn] = useState(false);
 
-  const numHearts = 50;
+  const numHearts = 80;
 
   useEffect(() => {
     const newHearts: Heart[] = [];
@@ -46,9 +46,9 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
       do {
         finalLeft = 5 + Math.random() * 80;
         finalTop = 5 + Math.random() * 80;
-        key = `${Math.floor(finalLeft / 15)}_${Math.floor(finalTop / 15)}`;
+        key = `${Math.floor(finalLeft / 8)}_${Math.floor(finalTop / 8)}`;
         attempts++;
-      } while (positions.has(key) && attempts < 10);
+      } while (positions.has(key) && attempts < 20);
       positions.add(key);
 
       newHearts.push({
