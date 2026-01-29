@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export function FlashcardsScreen() {
   const initialCards = useMemo(() => [
@@ -22,25 +23,38 @@ export function FlashcardsScreen() {
       id: 4,
       text: "My heart beats for you, and only you. Always and forever.",
     },
+    {
+      id: 5,
+      text: "I\nLOVE\nYOUUU",
+      isFinal: true,
+    },
   ], []);
 
   const [cards, setCards] = useState(initialCards);
   const [isShuffling, setIsShuffling] = useState(false);
+  const topCard = cards[0];
 
   const handleShuffle = () => {
-    if (isShuffling) return;
+    if (isShuffling || (topCard && topCard.isFinal)) {
+      return;
+    }
     setIsShuffling(true);
     setTimeout(() => {
       setCards(prevCards => {
         const newCards = [...prevCards];
-        const topCard = newCards.shift();
-        if (topCard) {
-            newCards.push(topCard);
+        const cardToMove = newCards.shift();
+        if (cardToMove) {
+            newCards.push(cardToMove);
         }
         return newCards;
       });
       setIsShuffling(false);
     }, 500);
+  };
+
+  const handleNext = () => {
+    // The user has not specified what this button should do.
+    console.log("Next button clicked!");
   };
   
   return (
@@ -52,7 +66,7 @@ export function FlashcardsScreen() {
             onClick={index === 0 ? handleShuffle : undefined}
             className={cn(
               "absolute inset-0 w-full h-full shadow-lg transition-all duration-300 ease-in-out",
-              index === 0 ? "cursor-pointer" : "pointer-events-none",
+              index === 0 && topCard && !topCard.isFinal ? "cursor-pointer" : "pointer-events-none",
               isShuffling && index === 0 ? "animate-shuffle-card-out" : "",
               index > 2 ? "opacity-0" : "" // Only show top 3 cards
             )}
@@ -61,11 +75,24 @@ export function FlashcardsScreen() {
               zIndex: cards.length - index,
             }}
           >
-            <CardContent className="flex flex-col items-center justify-center text-center h-full p-6 font-headline text-2xl text-foreground">
-              <p>{flashcard.text}</p>
+            <CardContent className="flex flex-col items-center justify-center text-center h-full p-6">
+              {flashcard.isFinal ? (
+                <p className="font-headline text-5xl md:text-6xl text-foreground whitespace-pre-line leading-tight">
+                  {flashcard.text}
+                </p>
+              ) : (
+                <p className="font-headline text-2xl text-foreground">
+                  {flashcard.text}
+                </p>
+              )}
             </CardContent>
           </Card>
         ))}
+         {topCard && topCard.isFinal && (
+          <div className="absolute bottom-6 right-6 z-[100] animate-fade-in animation-delay-500">
+            <Button onClick={handleNext}>Next --&gt;</Button>
+          </div>
+        )}
       </div>
     </div>
   );
