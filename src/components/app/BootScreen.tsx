@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import { useEffect, useState, useRef, useCallback } from 'react';
 import * as Tone from 'tone';
 import { HeartIcon } from './HeartIcon';
-import { FingerprintHeartIcon } from './FingerprintHeartIcon';
 
 interface BootScreenProps {
   stage: Stage;
@@ -105,15 +104,15 @@ export function BootScreen({
   return (
     <div
       className={cn(
-        'absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background to-primary/20 transition-opacity duration-1000 overflow-hidden',
+        'absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-background to-primary/10 transition-opacity duration-1000 overflow-hidden',
         show ? 'opacity-100' : 'opacity-0 pointer-events-none'
       )}
     >
       {/* Corner Hearts */}
-      <FingerprintHeartIcon className="absolute -top-8 -left-8 w-24 h-24 text-accent/50 opacity-50 -rotate-45" />
-      <FingerprintHeartIcon className="absolute -top-4 -right-10 w-24 h-24 text-accent/50 opacity-50 rotate-45" />
-      <FingerprintHeartIcon className="absolute -bottom-8 -left-4 w-20 h-20 text-accent/50 opacity-40 rotate-12" />
-      <FingerprintHeartIcon className="absolute -bottom-10 -right-6 w-24 h-24 text-accent/50 opacity-50 -rotate-12" />
+      <HeartIcon className="absolute -top-8 -left-8 w-24 h-24 text-primary/20 -rotate-45" />
+      <HeartIcon className="absolute -top-4 -right-10 w-24 h-24 text-primary/10 rotate-45" />
+      <HeartIcon className="absolute -bottom-8 -left-4 w-20 h-20 text-primary/10 rotate-12" />
+      <HeartIcon className="absolute -bottom-10 -right-6 w-24 h-24 text-primary/20 -rotate-12" />
 
       <div className="relative flex flex-col items-center justify-center z-10">
         <button
@@ -160,7 +159,9 @@ export function BootScreen({
                 cy="32"
               />
             </svg>
-            <p className="absolute text-sm font-bold text-primary">{progress}%</p>
+            <p className="absolute text-xl font-bold text-primary">
+              {progress < 100 ? `${progress}%` : '∞'}
+            </p>
           </div>
         )}
 
