@@ -113,6 +113,14 @@ export default {
           '0%': { transform: 'translateY(20vh) rotate(-10deg)', opacity: '0.8' },
           '100%': { transform: 'translateY(-120vh) rotate(10deg)', opacity: '0' },
         },
+        'fill-in': {
+          '0%': { transform: 'scale(0)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        'fly-out': {
+          '0%': { transform: 'translateY(0) scale(1)', opacity: '1' },
+          '100%': { transform: 'translateY(-120vh) scale(0.5)', opacity: '0' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -123,6 +131,8 @@ export default {
         'float-up': 'float-up forwards',
         'sway': 'sway ease-in-out infinite',
         'balloon-float': 'balloon-float 15s linear forwards',
+        'fill-in': 'fill-in 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards',
+        'fly-out': 'fly-out 2s ease-in-out forwards',
       },
     },
   },

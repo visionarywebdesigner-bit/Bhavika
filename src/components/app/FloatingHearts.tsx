@@ -21,11 +21,11 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
 
   const hearts = useMemo(() => {
     const heartArray: Heart[] = [];
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 300; i++) {
       const size = Math.random() * 80 + 40; // 40px to 120px
-      const duration = Math.random() * 4 + 4; // 4s to 8s
-      const delay = Math.random() * 2; // 0s to 2s
-      const sway = Math.random() * 100 - 50; // -50px to 50px
+      const flyAwayDuration = Math.random() * 2 + 1.5; // 1.5s to 3.5s
+      const swayDuration = Math.random() * 4 + 3;
+      const swayAmount = Math.random() * 100 - 50;
       const nickname = nicknames[Math.floor(Math.random() * nicknames.length)];
       heartArray.push({
         id: i,
@@ -35,8 +35,9 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
           width: `${size}px`,
           height: `${size}px`,
           left: `${Math.random() * 100}%`,
-          animation: `float-up ${duration}s linear ${delay}s forwards, sway ${Math.random() * 4 + 3}s ease-in-out ${delay}s infinite`,
-          '--sway-amount': `${sway}px`,
+          top: `${Math.random() * 100}%`,
+          animation: `fill-in 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards, sway ${swayDuration}s ease-in-out infinite, fly-out ${flyAwayDuration}s ease-in-out 1s forwards`,
+          '--sway-amount': `${swayAmount}px`,
         } as React.CSSProperties,
       });
     }
@@ -44,10 +45,11 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
   }, [nicknames]);
 
   useEffect(() => {
+    // Start fading out after the hearts have been on screen for a bit.
     const timer = setTimeout(() => {
       setIsFadingOut(true);
       setTimeout(onTransitionEnd, 1000); // Wait for background fade before changing stage
-    }, 5000); // Total duration of animation scene
+    }, 3500); // Total duration of animation scene
 
     return () => clearTimeout(timer);
   }, [onTransitionEnd]);
@@ -59,7 +61,7 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
         <div className={`absolute inset-0 bg-gradient-to-b from-accent to-primary transition-opacity duration-1000 ${isFadingOut ? 'opacity-100' : 'opacity-0'}`}></div>
         <div className="absolute inset-0 overflow-hidden">
             {hearts.map((heart) => (
-                <div key={heart.id} className="absolute bottom-[-150px]" style={heart.style}>
+                <div key={heart.id} className="absolute -translate-x-1/2 -translate-y-1/2" style={heart.style}>
                 <div className="relative w-full h-full flex items-center justify-center">
                     <HeartIcon className="w-full h-full text-primary/70" />
                     <span 
