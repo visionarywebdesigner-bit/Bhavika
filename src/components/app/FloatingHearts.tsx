@@ -11,46 +11,72 @@ interface FloatingHeartsProps {
 interface Heart {
   id: number;
   style: React.CSSProperties;
+  finalStyle: React.CSSProperties;
   nickname: string;
 }
-type HeartRow = Heart[];
 
 export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
   const [isFadingOut, setIsFadingOut] = useState(false);
   const nicknames = useMemo(() => ["Sweetu", "Cutu", "Jaan", "Bhavika", "Bhavi", "Bhavu", "Bhavya"], []);
-  const [heartRows, setHeartRows] = useState<HeartRow[]>([]);
+  const [hearts, setHearts] = useState<Heart[]>([]);
+  const [isAnimatingIn, setIsAnimatingIn] = useState(false);
 
-  const numRows = 12;
-  const numCols = 10;
+  const numHearts = 50;
 
   useEffect(() => {
-    const rows: HeartRow[] = [];
-    let heartId = 0;
-    for (let i = 0; i < numRows; i++) {
-      const row: HeartRow = [];
-      // Alternate between numCols and numCols-1 for a honeycomb effect
-      const colsThisRow = i % 2 === 0 ? numCols : numCols + 1;
-      for (let j = 0; j < colsThisRow; j++) {
-        // Stagger animation from bottom to top, with a slight horizontal wave
-        const animationDelay = `${(numRows - i - 1) * 100 + j * 30}ms`;
-        const nickname = nicknames[heartId % nicknames.length];
-        row.push({
-          id: heartId,
-          nickname,
-          style: {
-            animationDelay,
-          },
-        });
-        heartId++;
+    const newHearts: Heart[] = [];
+    const positions = new Set<string>();
+
+    for (let i = 0; i < numHearts; i++) {
+      const nickname = nicknames[i % nicknames.length];
+      
+      const fromSide = Math.random();
+      let transform;
+      if (fromSide < 0.33) {
+        transform = 'translateY(110vh)';
+      } else if (fromSide < 0.66) {
+        transform = 'translateX(-110vw)';
+      } else {
+        transform = 'translateX(110vw)';
       }
-      rows.push(row);
+
+      let finalLeft, finalTop;
+      let key;
+      let attempts = 0;
+      do {
+        finalLeft = 5 + Math.random() * 80;
+        finalTop = 5 + Math.random() * 80;
+        key = `${Math.floor(finalLeft / 15)}_${Math.floor(finalTop / 15)}`;
+        attempts++;
+      } while (positions.has(key) && attempts < 10);
+      positions.add(key);
+
+      newHearts.push({
+        id: i,
+        nickname,
+        style: {
+          top: `${finalTop}vh`,
+          left: `${finalLeft}vw`,
+          transform,
+          transitionProperty: 'transform',
+          transitionTimingFunction: 'ease-out',
+          transitionDelay: `${500 + Math.random() * 1500}ms`,
+          transitionDuration: `${1500 + Math.random() * 1000}ms`,
+        },
+        finalStyle: {
+            transform: 'translate(0, 0) scale(1)',
+        }
+      });
     }
-    setHeartRows(rows);
+    setHearts(newHearts);
+    
+    const t = setTimeout(() => setIsAnimatingIn(true), 100);
+    return () => clearTimeout(t);
   }, [nicknames]);
 
   useEffect(() => {
-    const fillTime = (numRows * 100) + 1000;
-    const holdTime = 1500;
+    const fillTime = 3500;
+    const holdTime = 2500;
 
     const timer = setTimeout(() => {
       setIsFadingOut(true);
@@ -62,46 +88,27 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
 
   return (
     <div
-      className="absolute inset-0 bg-gradient-to-b from-background to-primary"
+      className="absolute inset-0 bg-gradient-to-b from-background to-primary overflow-hidden"
     >
       <div className={`absolute inset-0 bg-gradient-to-b from-accent to-primary transition-opacity duration-1000 ${isFadingOut ? 'opacity-100' : 'opacity-0'}`}></div>
       
-      <div className="absolute inset-0 flex flex-col justify-around overflow-hidden">
-        {heartRows.map((row, rowIndex) => (
-          <div
-            key={rowIndex}
-            className="flex justify-center"
-            // Apply a horizontal offset to every other row to create the staggered effect
-            style={{
-              marginLeft: rowIndex % 2 !== 0 ? `calc(-100vw / ${numCols * 2})` : '0',
-            }}
-          >
-            {row.map((heart) => (
-              <div
-                key={heart.id}
-                className={cn(
-                  "relative flex items-center justify-center opacity-0",
-                  isFadingOut ? 'animate-fly-out' : 'animate-pack-in-from-bottom'
-                )}
-                style={{
-                  ...heart.style,
-                  width: `calc(100vw / ${numCols})`, // Set width to fit numCols across the screen
-                  flexShrink: 0,
-                }}
-              >
-                <div className="relative w-full h-full aspect-square flex items-center justify-center p-1">
-                  <HeartIcon className="w-full h-full text-primary/70" />
-                  <span
-                    className="absolute text-white/90 font-headline text-center drop-shadow-md select-none text-[clamp(6px,1.5vw,14px)]"
-                  >
-                    {heart.nickname}
-                  </span>
-                </div>
-              </div>
-            ))}
+      {hearts.map((heart) => (
+        <div
+          key={heart.id}
+          className={cn(
+            "absolute",
+            isFadingOut ? 'animate-fly-out' : ''
+          )}
+          style={isAnimatingIn ? { ...heart.style, ...heart.finalStyle } : heart.style}
+        >
+          <div className="relative w-24 h-24 flex items-center justify-center">
+            <HeartIcon className="w-full h-full text-primary/70" />
+            <span className="absolute text-white/90 font-headline text-center drop-shadow-md select-none text-[clamp(8px,2vw,16px)]">
+              {heart.nickname}
+            </span>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }
