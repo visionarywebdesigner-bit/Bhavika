@@ -87,7 +87,7 @@ export function BootScreen({
         setProgress((p) => {
           if (p >= 100) {
             clearInterval(interval);
-            onLoadingComplete();
+            setTimeout(onLoadingComplete, 0);
             return 100;
           }
           return p + 1;
