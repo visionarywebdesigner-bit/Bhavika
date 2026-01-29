@@ -18,10 +18,10 @@ export function FloatingHearts({ name, onTransitionEnd }: FloatingHeartsProps) {
 
   const hearts = useMemo(() => {
     const heartArray: Heart[] = [];
-    for (let i = 0; i < 35; i++) {
-      const size = Math.random() * 80 + 40; // 40px to 120px
-      const duration = Math.random() * 5 + 8; // 8s to 13s
-      const delay = Math.random() * 5; // 0s to 5s
+    for (let i = 0; i < 150; i++) {
+      const size = Math.random() * 60 + 20; // 20px to 80px
+      const duration = Math.random() * 4 + 4; // 4s to 8s
+      const delay = Math.random() * 2; // 0s to 2s
       const sway = Math.random() * 100 - 50; // -50px to 50px
       heartArray.push({
         id: i,
@@ -41,7 +41,7 @@ export function FloatingHearts({ name, onTransitionEnd }: FloatingHeartsProps) {
     const timer = setTimeout(() => {
       setIsFadingOut(true);
       setTimeout(onTransitionEnd, 1000); // Wait for background fade before changing stage
-    }, 10000); // Total duration of animation scene
+    }, 5000); // Total duration of animation scene
 
     return () => clearTimeout(timer);
   }, [onTransitionEnd]);
@@ -56,9 +56,6 @@ export function FloatingHearts({ name, onTransitionEnd }: FloatingHeartsProps) {
                 <div key={heart.id} className="absolute bottom-[-150px]" style={heart.style}>
                 <div className="relative w-full h-full">
                     <HeartIcon className="w-full h-full text-primary/70" />
-                    <span className="absolute inset-0 flex items-center justify-center font-headline text-sm md:text-base text-primary-foreground/80 rotate-[-15deg]">
-                    {name}
-                    </span>
                 </div>
                 </div>
             ))}

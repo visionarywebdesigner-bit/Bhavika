@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from 'react';
-import { generateNameForHearts } from '@/ai/flows/floating-name-hearts-animation';
 import { BootScreen } from '@/components/app/BootScreen';
 import { FloatingHearts } from '@/components/app/FloatingHearts';
 import { WelcomeScreen } from '@/components/app/WelcomeScreen';
@@ -15,25 +14,6 @@ export default function Home() {
   const [name, setName] = useState('Bhavika');
   const [isAudioReady, setIsAudioReady] = useState(false);
   const { toast } = useToast();
-
-  useEffect(() => {
-    async function fetchName() {
-      try {
-        const result = await generateNameForHearts({ userName: 'Bhavika' });
-        if (result.personalizedName) {
-          setName(result.personalizedName);
-        }
-      } catch (error) {
-        console.error('Failed to generate name:', error);
-        toast({
-          variant: 'destructive',
-          title: 'Oops!',
-          description: 'Could not personalize the name. Using a default.',
-        });
-      }
-    }
-    fetchName();
-  }, [toast]);
 
   const initializeAudio = useCallback(async () => {
     if (isAudioReady) return true;
@@ -50,7 +30,7 @@ export default function Home() {
   }, [isAudioReady]);
 
   const handleLoadingComplete = useCallback(() => {
-    setStage('loaded');
+    setTimeout(() => setStage('loaded'), 500);
   }, []);
 
   const handleHeartClick = useCallback(async () => {
