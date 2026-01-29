@@ -1,4 +1,5 @@
-import type {Config} from 'tailwindcss';
+import type { Config } from 'tailwindcss';
+const { fontFamily } = require("tailwindcss/defaultTheme")
 
 export default {
   darkMode: ['class'],
@@ -10,8 +11,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
+        body: ['Alegreya', 'serif'],
+        headline: ['Belleza', 'serif'],
         code: ['monospace'],
       },
       colors: {
@@ -88,12 +89,48 @@ export default {
             height: '0',
           },
         },
+        beat: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.07)' },
+        },
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        'fade-in-up': {
+          from: { opacity: '0', transform: 'translateY(10px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        'float-up': {
+          '0%': { transform: 'translateY(0)', opacity: '1' },
+          '100%': { transform: 'translateY(-120vh)', opacity: '0' },
+        },
+         sway: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(var(--sway-amount))' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        beat: 'beat 1.1s ease-in-out infinite',
+        'fade-in': 'fade-in 1s ease-out forwards',
+        'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+        'float-up': 'float-up forwards',
+        'sway': 'sway ease-in-out infinite',
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'),
+    function ({ addUtilities }) {
+      const newUtilities = {};
+      const delays = [100, 200, 300, 400, 500, 700, 1000];
+      delays.forEach(delay => {
+        newUtilities[`.animation-delay-${delay}`] = {
+          'animation-delay': `${delay}ms`,
+        };
+      });
+      addUtilities(newUtilities);
+    }
+  ],
 } satisfies Config;
