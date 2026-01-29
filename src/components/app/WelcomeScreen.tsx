@@ -43,11 +43,11 @@ export function WelcomeScreen({ name }: WelcomeScreenProps) {
     <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-accent to-primary animate-fade-in">
       <div className="text-center">
         <h1 className="text-4xl md:text-6xl font-headline text-primary-foreground mb-4 drop-shadow-md animate-fade-in-up">
-          Welcome, {name} 💗
+          To my dearest, {name}
         </h1>
         <div className="h-8">
         {isLoading ? (
-          <Skeleton className="h-6 w-64 mx-auto" />
+          <Skeleton className="h-6 w-64 mx-auto bg-primary/20" />
         ) : (
           <p className="text-lg md:text-2xl font-body text-foreground animate-fade-in-up animation-delay-300">
             {message}

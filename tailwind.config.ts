@@ -11,8 +11,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Alegreya', 'serif'],
-        headline: ['Belleza', 'serif'],
+        body: ['Lato', 'sans-serif'],
+        headline: ['"Dancing Script"', 'cursive'],
         code: ['monospace'],
       },
       colors: {
@@ -91,7 +91,7 @@ export default {
         },
         beat: {
           '0%, 100%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(1.07)' },
+          '50%': { transform: 'scale(1.1)' },
         },
         'fade-in': {
           from: { opacity: '0' },
@@ -109,22 +109,27 @@ export default {
           '0%, 100%': { transform: 'translateX(0)' },
           '50%': { transform: 'translateX(var(--sway-amount))' },
         },
+        'balloon-float': {
+          '0%': { transform: 'translateY(20vh) rotate(-10deg)', opacity: '0.8' },
+          '100%': { transform: 'translateY(-120vh) rotate(10deg)', opacity: '0' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        beat: 'beat 1.1s ease-in-out infinite',
+        beat: 'beat 0.8s ease-in-out infinite',
         'fade-in': 'fade-in 1s ease-out forwards',
         'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
         'float-up': 'float-up forwards',
         'sway': 'sway ease-in-out infinite',
+        'balloon-float': 'balloon-float 15s linear forwards',
       },
     },
   },
   plugins: [require('tailwindcss-animate'),
     function ({ addUtilities }) {
       const newUtilities = {};
-      const delays = [100, 200, 300, 400, 500, 700, 1000];
+      const delays = [100, 200, 300, 400, 500, 700, 1000, 2000, 3000, 4000, 5000];
       delays.forEach(delay => {
         newUtilities[`.animation-delay-${delay}`] = {
           'animation-delay': `${delay}ms`,
