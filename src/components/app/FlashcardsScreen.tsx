@@ -8,7 +8,11 @@ import { HeartIcon } from "./HeartIcon";
 import { KissIcon } from "./KissIcon";
 import { RibbonIcon } from "./RibbonIcon";
 
-export function FlashcardsScreen() {
+interface FlashcardsScreenProps {
+  onNext: () => void;
+}
+
+export function FlashcardsScreen({ onNext }: FlashcardsScreenProps) {
   const initialCards = useMemo(() => [
     {
       id: 1,
@@ -60,11 +64,6 @@ export function FlashcardsScreen() {
       setIsShuffling(false);
     }, 500);
   };
-
-  const handleNext = () => {
-    // The user has not specified what this button should do.
-    console.log("Next button clicked!");
-  };
   
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-accent to-primary animate-fade-in animation-delay-500">
@@ -114,7 +113,7 @@ export function FlashcardsScreen() {
         ))}
          {topCard && topCard.isFinal && (
           <div className="absolute bottom-6 right-6 z-[100] animate-fade-in animation-delay-500">
-            <Button onClick={handleNext}>Next --&gt;</Button>
+            <Button onClick={onNext}>Next --&gt;</Button>
           </div>
         )}
       </div>

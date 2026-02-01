@@ -7,8 +7,10 @@ import { WelcomeScreen } from '@/components/app/WelcomeScreen';
 import * as Tone from 'tone';
 import { useToast } from '@/hooks/use-toast';
 import { FlashcardsScreen } from '@/components/app/FlashcardsScreen';
+import { LetterScreen } from '@/components/app/LetterScreen';
+import { cn } from '@/lib/utils';
 
-export type Stage = 'booting' | 'loaded' | 'transitioning' | 'welcome' | 'flashcards';
+export type Stage = 'booting' | 'loaded' | 'transitioning' | 'welcome' | 'flashcards' | 'letter';
 
 export default function Home() {
   const [stage, setStage] = useState<Stage>('booting');
@@ -64,23 +66,32 @@ export default function Home() {
     }
   }, [stage]);
 
+  const handleGoToLetter = useCallback(() => {
+    setStage('letter');
+  }, []);
+
+
   return (
     <main className="relative w-full h-dvh overflow-hidden bg-background">
-      <BootScreen
-        stage={stage}
-        onLoadingComplete={handleLoadingComplete}
-        onHeartClick={handleHeartClick}
-        initializeAudio={initializeAudio}
-        isAudioReady={isAudioReady}
-      />
+      <div className={cn("absolute inset-0 transition-opacity duration-1000", stage === 'letter' ? 'opacity-0 pointer-events-none' : 'opacity-100')}>
+        <BootScreen
+          stage={stage}
+          onLoadingComplete={handleLoadingComplete}
+          onHeartClick={handleHeartClick}
+          initializeAudio={initializeAudio}
+          isAudioReady={isAudioReady}
+        />
 
-      {stage === 'transitioning' && (
-        <FloatingHearts onTransitionEnd={handleTransitionEnd} />
-      )}
-      
-      {(stage === 'welcome' || stage === 'flashcards') && <WelcomeScreen name={name} stage={stage} />}
+        {stage === 'transitioning' && (
+          <FloatingHearts onTransitionEnd={handleTransitionEnd} />
+        )}
+        
+        {(stage === 'welcome' || stage === 'flashcards') && <WelcomeScreen name={name} stage={stage} />}
 
-      {stage === 'flashcards' && <FlashcardsScreen />}
+        {stage === 'flashcards' && <FlashcardsScreen onNext={handleGoToLetter} />}
+      </div>
+
+      {stage === 'letter' && <LetterScreen />}
     </main>
   );
 }
