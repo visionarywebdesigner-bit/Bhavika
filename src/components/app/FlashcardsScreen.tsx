@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { HeartIcon } from "./HeartIcon";
 import { KissIcon } from "./KissIcon";
-import { FingerprintHeartIcon } from "./FingerprintHeartIcon";
 import { RibbonIcon } from "./RibbonIcon";
 
 export function FlashcardsScreen() {
@@ -26,7 +25,12 @@ export function FlashcardsScreen() {
     {
       id: 4,
       text: "My heart beats for you, and only you. Always and forever.",
-      widget: <FingerprintHeartIcon className="w-16 h-16 text-primary/80 mt-4" />,
+      widget: (
+        <div className="absolute bottom-6 right-6 flex items-end gap-1">
+          <HeartIcon className="w-6 h-6 text-primary/70 -rotate-12" />
+          <HeartIcon className="w-8 h-8 text-primary/90 rotate-6" />
+        </div>
+      ),
     },
     {
       id: 5,
