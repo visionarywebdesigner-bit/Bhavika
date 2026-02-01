@@ -7,72 +7,41 @@ import { HeartIcon } from './HeartIcon';
 import { FlowerIcon } from './FlowerIcon';
 import { Card, CardContent } from '../ui/card';
 
-type EnvelopeState = 'closed' | 'shaking' | 'partiallyOpen' | 'opening' | 'open';
+type EnvelopeState = 'closed' | 'shaking' | 'opening' | 'open';
 
 const Envelope = ({ state, onClick }: { state: EnvelopeState, onClick: () => void }) => {
     const [isShaking, setIsShaking] = useState(false);
-  
-    useEffect(() => {
-      if (state === 'shaking') {
-        setIsShaking(true);
-        const timer = setTimeout(() => setIsShaking(false), 500);
-        return () => clearTimeout(timer);
-      }
-    }, [state]);
 
-    const showLetterPeek = state === 'partiallyOpen' || state === 'opening' || state === 'open';
+    useEffect(() => {
+        if (state === 'shaking') {
+            setIsShaking(true);
+            const timer = setTimeout(() => setIsShaking(false), 500);
+            return () => clearTimeout(timer);
+        }
+    }, [state]);
 
     return (
         <div
             className={cn(
-                "relative w-[300px] h-[200px] cursor-pointer transition-all duration-700 ease-in-out",
+                "relative w-[300px] h-[200px] cursor-pointer transition-opacity duration-1000",
                 isShaking && 'animate-shake',
-                state === 'opening' || state === 'open' ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
+                (state === 'opening' || state === 'open') ? 'opacity-0' : 'opacity-100'
             )}
             onClick={onClick}
-            style={{ perspective: '1000px' }}
         >
-            {/* Letter Peek */}
-            <div className={cn(
-                "absolute inset-x-2 top-0 h-[180px] bg-white rounded-t-md shadow-inner transition-transform duration-700 ease-in-out z-0",
-                showLetterPeek ? 'transform -translate-y-28' : 'transform translate-y-2',
-                "flex justify-center pt-2"
-            )}>
-                <p className="font-headline text-2xl text-foreground">Dear Bhavika,</p>
-            </div>
-
             {/* Envelope Body */}
-            <div className="absolute w-full h-full z-10">
-                {/* Back part */}
-                <div className="absolute w-full h-full bg-secondary rounded-md"></div>
-                {/* Left flap */}
-                <div className="absolute w-[152px] h-full" style={{ left: '0px', top: '0px', clipPath: 'polygon(0% 0%, 100% 50%, 0% 100%)', backgroundColor: 'hsl(var(--accent))' }}></div>
-                {/* Right flap */}
-                <div className="absolute w-[152px] h-full" style={{ right: '0px', top: '0px', clipPath: 'polygon(100% 0%, 0% 50%, 100% 100%)', backgroundColor: 'hsl(var(--accent))' }}></div>
-                {/* Bottom flap */}
-                <div className="absolute w-full h-[102px]" style={{ left: '0px', bottom: '0px', clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)', backgroundColor: 'hsl(var(--primary) / 0.5)' }}></div>
-
-                {/* Top Flap (the one that opens) */}
-                <div
-                    className={cn(
-                        "absolute top-0 left-0 w-full h-[102px] origin-bottom transition-transform duration-1000 ease-in-out z-20",
-                        state === 'partiallyOpen' && "transform rotate-x-[45deg]",
-                        (state === 'opening' || state === 'open') && "transform rotate-x-[-180deg]"
-                    )}
-                    style={{ transformStyle: 'preserve-3d', clipPath: 'polygon(0% 100%, 100% 100%, 50% 0%)' }}
-                >
-                    {/* Front of the flap */}
-                    <div className="absolute inset-0 bg-primary/80"></div>
-                    {/* Back of the flap (visible when open) */}
-                    <div className="absolute inset-0 bg-primary/50" style={{ transform: 'rotateX(180deg)', backfaceVisibility: 'hidden' }}></div>
-                </div>
-
-                {/* Seal */}
-                <HeartIcon className={cn(
-                    "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[calc(50%_+_10px)] w-8 h-8 text-primary transition-opacity duration-500 z-30",
-                    state !== 'closed' && 'opacity-0'
-                )} />
+            <div className="absolute w-full h-full bg-secondary rounded-md shadow-lg">
+                {/* Visual top part of the envelope back */}
+                <div className="absolute top-0 left-0 w-full h-1/2 bg-accent" style={{ clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}></div>
             </div>
+
+            {/* Top Flap */}
+            <div className="absolute top-0 left-0 w-full h-1/2">
+                <div className="absolute inset-0 bg-primary/80" style={{ clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}></div>
+            </div>
+
+            {/* Seal */}
+            <HeartIcon className="absolute top-[calc(50%-20px)] left-1/2 -translate-x-1/2 w-8 h-8 text-primary z-10" />
         </div>
     );
 };
@@ -138,21 +107,19 @@ const Letter = () => {
 export function LetterScreen() {
   const [envelopeState, setEnvelopeState] = useState<EnvelopeState>('closed');
   const [showLetter, setShowLetter] = useState(false);
+  const [showParticles, setShowParticles] = useState(false);
+
 
   const handleEnvelopeClick = () => {
     if (envelopeState === 'closed') {
       setEnvelopeState('shaking');
       setTimeout(() => {
-        setEnvelopeState('partiallyOpen');
+        setEnvelopeState('opening');
+        setShowParticles(true);
+        setTimeout(() => {
+          setShowLetter(true);
+        }, 500); // letter appears a bit after particles
       }, 500); // Corresponds to shake animation duration
-    } else if (envelopeState === 'partiallyOpen') {
-      setEnvelopeState('opening');
-      setTimeout(() => {
-        setShowLetter(true);
-      }, 500); // Show letter shortly after opening starts
-      setTimeout(() => {
-        setEnvelopeState('open');
-      }, 1500); // Hide envelope after it has opened
     }
   };
 
@@ -162,14 +129,14 @@ export function LetterScreen() {
             "text-4xl md:text-5xl font-headline text-primary-foreground mb-12 drop-shadow-md transition-opacity duration-1000",
             (envelopeState !== 'closed') && 'opacity-0'
         )}>
-            You mean Alot to me.
+            You mean Alot to me......
         </h1>
         
         <div className="flex items-center justify-center">
             <Envelope state={envelopeState} onClick={handleEnvelopeClick} />
         </div>
 
-        {envelopeState === 'opening' && <Particles />}
+        {showParticles && <Particles />}
         {showLetter && <Letter />}
     </div>
   );
