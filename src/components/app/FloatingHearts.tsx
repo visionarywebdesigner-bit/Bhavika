@@ -21,53 +21,51 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
   const [hearts, setHearts] = useState<Heart[]>([]);
   const [isAnimatingIn, setIsAnimatingIn] = useState(false);
 
-  const numHearts = 80;
-
   useEffect(() => {
     const newHearts: Heart[] = [];
-    const positions = new Set<string>();
+    const rows = 10;
+    const cols = 7;
+    
+    const vh_extra = 30;
+    const vw_extra = 30;
+    
+    const v_increment = (100 + vh_extra) / rows;
+    const h_increment = (100 + vw_extra) / cols;
 
-    for (let i = 0; i < numHearts; i++) {
-      const nickname = nicknames[i % nicknames.length];
-      
-      const fromSide = Math.random();
-      let transform;
-      if (fromSide < 0.33) {
-        transform = 'translateY(110vh)';
-      } else if (fromSide < 0.66) {
-        transform = 'translateX(-110vw)';
-      } else {
-        transform = 'translateX(110vw)';
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const i = r * cols + c;
+        const nickname = nicknames[i % nicknames.length];
+        
+        const top = r * v_increment - vh_extra/2;
+        const left = (c + (r % 2) * 0.5) * h_increment - vw_extra/2;
+
+        const finalTop = top + (Math.random() - 0.5) * 5;
+        const finalLeft = left + (Math.random() - 0.5) * 5;
+
+        const scale = 1.3 + Math.random() * 0.4;
+        const rotation = (Math.random() - 0.5) * 30;
+        const delay = Math.random() * 1000;
+
+        newHearts.push({
+          id: i,
+          nickname,
+          style: {
+            top: `${finalTop}vh`,
+            left: `${finalLeft}vw`,
+            transform: 'scale(0)',
+            transitionProperty: 'transform',
+            transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+            transitionDelay: `${delay}ms`,
+            transitionDuration: `1000ms`,
+          },
+          finalStyle: {
+              transform: `scale(${scale}) rotate(${rotation}deg)`,
+          }
+        });
       }
-
-      let finalLeft, finalTop;
-      let key;
-      let attempts = 0;
-      do {
-        finalLeft = 5 + Math.random() * 80;
-        finalTop = 5 + Math.random() * 80;
-        key = `${Math.floor(finalLeft / 8)}_${Math.floor(finalTop / 8)}`;
-        attempts++;
-      } while (positions.has(key) && attempts < 20);
-      positions.add(key);
-
-      newHearts.push({
-        id: i,
-        nickname,
-        style: {
-          top: `${finalTop}vh`,
-          left: `${finalLeft}vw`,
-          transform,
-          transitionProperty: 'transform',
-          transitionTimingFunction: 'ease-out',
-          transitionDelay: `${500 + Math.random() * 1500}ms`,
-          transitionDuration: `${1500 + Math.random() * 1000}ms`,
-        },
-        finalStyle: {
-            transform: 'translate(0, 0) scale(1)',
-        }
-      });
     }
+    
     setHearts(newHearts);
     
     const t = setTimeout(() => setIsAnimatingIn(true), 100);
@@ -75,7 +73,7 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
   }, [nicknames]);
 
   useEffect(() => {
-    const fillTime = 3500;
+    const fillTime = 2000;
     const holdTime = 2500;
 
     const timer = setTimeout(() => {
@@ -101,9 +99,9 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
           )}
           style={isAnimatingIn ? { ...heart.style, ...heart.finalStyle } : heart.style}
         >
-          <div className="relative w-24 h-24 flex items-center justify-center">
-            <HeartIcon className="w-full h-full text-primary/70" />
-            <span className="absolute text-white/90 font-headline text-center drop-shadow-md select-none text-[clamp(8px,2vw,16px)]">
+          <div className="relative w-40 h-40 flex items-center justify-center">
+            <HeartIcon className="w-full h-full text-primary/90" />
+            <span className="absolute text-white/90 font-headline text-center drop-shadow-md select-none text-[clamp(10px,2vw,18px)]">
               {heart.nickname}
             </span>
           </div>
