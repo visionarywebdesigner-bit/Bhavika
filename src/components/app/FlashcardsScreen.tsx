@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { HeartIcon } from "./HeartIcon";
 import { KissIcon } from "./KissIcon";
+import { FingerprintHeartIcon } from "./FingerprintHeartIcon";
+import { RibbonIcon } from "./RibbonIcon";
 
 export function FlashcardsScreen() {
   const initialCards = useMemo(() => [
@@ -15,15 +17,16 @@ export function FlashcardsScreen() {
     },
     {
       id: 2,
-      text: "You're my everything. My sun, my moon, and all my stars. Happy Valentine's Day, my love.",
+      text: "You're my everything. My sun, my moon, and all my stars. You are my forever and always.",
     },
     {
       id: 3,
-      text: "I never knew what love was until I met you. Thank you for being you, and for being mine.",
+      text: "I never knew what love was until I met you. Thank you for being with me, I just cant get enough of you nor Thank you enough for being mine",
     },
     {
       id: 4,
       text: "My heart beats for you, and only you. Always and forever.",
+      widget: <FingerprintHeartIcon className="w-16 h-16 text-primary/80 mt-4" />,
     },
     {
       id: 5,
@@ -80,6 +83,7 @@ export function FlashcardsScreen() {
             <CardContent className="relative flex flex-col items-center justify-center text-center h-full p-6 overflow-hidden">
               {flashcard.isFinal ? (
                 <>
+                  <RibbonIcon className="absolute top-4 right-4 w-10 h-10 text-primary/30 rotate-12" />
                   <KissIcon className="absolute top-4 left-4 w-10 h-10 text-primary/20 -rotate-12" />
                   <KissIcon className="absolute top-12 right-4 w-8 h-8 text-primary/10 rotate-12" />
                   <KissIcon className="absolute bottom-20 left-6 w-6 h-6 text-primary/30 rotate-45" />
@@ -94,9 +98,12 @@ export function FlashcardsScreen() {
                   </div>
                 </>
               ) : (
-                <p className="font-headline text-2xl text-foreground">
-                  {flashcard.text}
-                </p>
+                <>
+                  <p className="font-headline text-2xl text-foreground">
+                    {flashcard.text}
+                  </p>
+                  {flashcard.widget}
+                </>
               )}
             </CardContent>
           </Card>
