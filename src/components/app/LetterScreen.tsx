@@ -4,7 +4,6 @@ import { useState, useMemo, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { HeartIcon } from './HeartIcon';
-import { FlowerIcon } from './FlowerIcon';
 import { Card, CardContent } from '../ui/card';
 
 type EnvelopeState = 'closed' | 'shaking' | 'opening' | 'open';
@@ -46,36 +45,6 @@ const Envelope = ({ state, onClick }: { state: EnvelopeState, onClick: () => voi
     );
 };
 
-const Particles = () => {
-    const particles = useMemo(() => Array.from({ length: 30 }).map((_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 500}ms`,
-      duration: `${1 + Math.random()}s`,
-      angle: `${(Math.random() - 0.5) * 90}deg`,
-      distance: `${50 + Math.random() * 50}vh`,
-      Icon: Math.random() > 0.5 ? HeartIcon : FlowerIcon,
-      color: `text-primary/${Math.random() > 0.5 ? '90' : '50'}`,
-    })), []);
-  
-    return (
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-50">
-        {particles.map(p => (
-          <p.Icon
-            key={p.id}
-            className={cn("absolute animate-particle-burst", p.color)}
-            style={{
-              left: p.left,
-              animationDelay: p.delay,
-              animationDuration: p.duration,
-              '--transform-end': `translate(${(Math.random() - 0.5) * 400}px, -${p.distance}) rotate(${p.angle}) scale(${0.5 + Math.random() * 0.5})`,
-            } as React.CSSProperties}
-          />
-        ))}
-      </div>
-    );
-  };
-
 
 const Letter = () => {
     const handleNext = () => {
@@ -107,7 +76,6 @@ const Letter = () => {
 export function LetterScreen() {
   const [envelopeState, setEnvelopeState] = useState<EnvelopeState>('closed');
   const [showLetter, setShowLetter] = useState(false);
-  const [showParticles, setShowParticles] = useState(false);
 
 
   const handleEnvelopeClick = () => {
@@ -115,10 +83,9 @@ export function LetterScreen() {
       setEnvelopeState('shaking');
       setTimeout(() => {
         setEnvelopeState('opening');
-        setShowParticles(true);
         setTimeout(() => {
           setShowLetter(true);
-        }, 500); // letter appears a bit after particles
+        }, 500); // letter appears a bit after envelope opens
       }, 500); // Corresponds to shake animation duration
     }
   };
@@ -136,7 +103,6 @@ export function LetterScreen() {
             <Envelope state={envelopeState} onClick={handleEnvelopeClick} />
         </div>
 
-        {showParticles && <Particles />}
         {showLetter && <Letter />}
     </div>
   );

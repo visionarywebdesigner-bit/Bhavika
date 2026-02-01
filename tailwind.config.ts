@@ -126,10 +126,6 @@ export default {
           '0%': { transform: 'scale(1) translateY(0) rotate(0)', opacity: '1' },
           '100%': { transform: 'translateY(-120vh) scale(0.8) rotate(10deg)', opacity: '0' },
         },
-        'particle-burst': {
-          '0%': { transform: 'translate(0, 0) scale(0)', opacity: '1' },
-          '100%': { transform: 'var(--transform-end)', opacity: '0' },
-        },
         'letter-slide-up': {
           '0%': { transform: 'translateY(50%) scale(0.8)', opacity: '0' },
           '100%': { transform: 'translateY(0) scale(1)', opacity: '1' },
@@ -152,7 +148,6 @@ export default {
         'fill-in': 'fill-in 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards',
         'fly-out': 'fly-out 2.5s ease-in forwards',
         'shuffle-card-out': 'shuffle-card-out 0.5s ease-in-out forwards',
-        'particle-burst': 'particle-burst 1.5s ease-out forwards',
         'letter-slide-up': 'letter-slide-up 1s ease-out forwards 0.5s',
         shake: 'shake 0.5s ease-in-out',
       },
