@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from 'react';
-import { HeartIcon } from './HeartIcon';
+import { TransitionHeartIcon } from './TransitionHeartIcon';
 import { cn } from '@/lib/utils';
 
 interface FloatingHeartsProps {
@@ -43,9 +43,9 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
         const finalTop = top + (Math.random() - 0.5) * 5;
         const finalLeft = left + (Math.random() - 0.5) * 5;
 
-        const scale = 1.3 + Math.random() * 0.4;
-        const rotation = (Math.random() - 0.5) * 30;
-        const delay = Math.random() * 1000;
+        const scale = 1.3 + Math.random() * 0.2;
+        const rotation = (Math.random() - 0.5) * 20;
+        const delay = Math.random() * 1500;
 
         newHearts.push({
           id: i,
@@ -55,9 +55,9 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
             left: `${finalLeft}vw`,
             transform: 'scale(0)',
             transitionProperty: 'transform',
-            transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+            transitionTimingFunction: 'ease-in-out',
             transitionDelay: `${delay}ms`,
-            transitionDuration: `1000ms`,
+            transitionDuration: `1500ms`,
           },
           finalStyle: {
               transform: `scale(${scale}) rotate(${rotation}deg)`,
@@ -73,12 +73,12 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
   }, [nicknames]);
 
   useEffect(() => {
-    const fillTime = 2000;
-    const holdTime = 2500;
+    const fillTime = 3000;
+    const holdTime = 3500;
 
     const timer = setTimeout(() => {
       setIsFadingOut(true);
-      setTimeout(onTransitionEnd, 2000);
+      setTimeout(onTransitionEnd, 3000);
     }, fillTime + holdTime);
 
     return () => clearTimeout(timer);
@@ -100,7 +100,7 @@ export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
           style={isAnimatingIn ? { ...heart.style, ...heart.finalStyle } : heart.style}
         >
           <div className="relative w-40 h-40 flex items-center justify-center">
-            <HeartIcon className="w-full h-full text-primary/90" />
+            <TransitionHeartIcon className="w-full h-full text-primary/90" />
             <span className="absolute text-white/90 font-headline text-center drop-shadow-md select-none text-[clamp(10px,2vw,18px)]">
               {heart.nickname}
             </span>

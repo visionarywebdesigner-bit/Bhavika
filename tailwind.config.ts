@@ -136,7 +136,7 @@ export default {
         'sway': 'sway ease-in-out infinite',
         'balloon-float': 'balloon-float 15s linear forwards',
         'fill-in': 'fill-in 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards',
-        'fly-out': 'fly-out 2s ease-in-out forwards',
+        'fly-out': 'fly-out 3s ease-in forwards',
         'shuffle-card-out': 'shuffle-card-out 0.5s ease-in-out forwards',
       },
     },

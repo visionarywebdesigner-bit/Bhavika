@@ -59,7 +59,7 @@ export default function Home() {
     if (stage === 'welcome') {
       const timer = setTimeout(() => {
         setStage('flashcards');
-      }, 3000); // Wait 3 seconds before showing flashcards
+      }, 4000); // Wait 4 seconds before showing flashcards
       return () => clearTimeout(timer);
     }
   }, [stage]);
