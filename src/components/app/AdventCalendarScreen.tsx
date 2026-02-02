@@ -1,19 +1,20 @@
 "use client";
 
-import { HeartIcon } from "./HeartIcon";
-import { cn } from "@/lib/utils";
+import Link from 'next/link';
+import { Card, CardContent } from '@/components/ui/card';
+import { Heart, Gift, Mail, Star, Music, Key, Diamond, Trophy } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import * as Tone from 'tone';
 
-// Positions are percentages for top and left
-const dates = [
-    { day: 7, pos: { top: '28%', left: '30%' } },
-    { day: 8, pos: { top: '28%', left: '70%' } },
-    { day: 9, pos: { top: '45%', left: '25%' } },
-    { day: 10, pos: { top: '48%', left: '50%' } },
-    { day: 11, pos: { top: '45%', left: '75%' } },
-    { day: 12, pos: { top: '65%', left: '35%' } },
-    { day: 13, pos: { top: '65%', left: '65%' } },
-    { day: 14, pos: { top: '78%', left: '50%' } },
+const days = [
+  { day: 7, icon: Heart, color: 'text-pink-400' },
+  { day: 8, icon: Gift, color: 'text-red-400' },
+  { day: 9, icon: Mail, color: 'text-rose-400' },
+  { day: 10, icon: Star, color: 'text-pink-400' },
+  { day: 11, icon: Music, color: 'text-red-400' },
+  { day: 12, icon: Key, color: 'text-rose-400' },
+  { day: 13, icon: Diamond, color: 'text-pink-400' },
+  { day: 14, icon: Trophy, color: 'text-red-400' },
 ];
 
 const Banner = ({ children, className }: { children: React.ReactNode, className?: string }) => (
@@ -29,7 +30,8 @@ interface AdventCalendarScreenProps {
 }
 
 export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenProps) {
-  const handleDayClick = async (day: number) => {
+  
+  const handleDayClick = async () => {
     if (await initializeAudio()) {
        const synth = new Tone.PluckSynth().toDestination();
        synth.triggerAttack("C4", Tone.now());
@@ -39,26 +41,30 @@ export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenPr
 
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-primary/10 to-accent animate-fade-in">
-        <div className="text-center">
-            <div className="mb-8">
-                <Banner>Happy Valentines</Banner>
-            </div>
+      <div className="text-center space-y-8">
+        <Banner>A Countdown to Our Day</Banner>
 
-            <div className="relative w-[90vmin] h-[90vmin] max-w-xl max-h-xl mx-auto">
-                <HeartIcon className="absolute inset-0 w-full h-full text-primary/20 drop-shadow-xl" />
-                {dates.map(({ day, pos }) => (
-                <button
-                    key={day}
-                    onClick={() => handleDayClick(day)}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 w-[22%] h-[22%] flex items-center justify-center text-primary-foreground font-bold font-headline text-3xl group transition-transform hover:scale-110"
-                    style={{ top: pos.top, left: pos.left }}
+        <div className="grid grid-cols-4 gap-4">
+          {days.map(({ day, icon: Icon, color }) => (
+            <Link href={`/day/${day}`} key={day}>
+                <Card 
+                    onClick={handleDayClick}
+                    className="relative aspect-[3/4] w-28 sm:w-32 flex flex-col items-center justify-center bg-card/60 backdrop-blur-sm border-primary/20 hover:border-primary hover:bg-card transition-all duration-300 transform hover:-translate-y-2 group cursor-pointer shadow-lg hover:shadow-2xl rounded-xl overflow-hidden"
                 >
-                    <HeartIcon className="absolute inset-0 w-full h-full text-primary/80 group-hover:text-primary transition-colors" />
-                    <span className="relative drop-shadow-md">{day}</span>
-                </button>
-                ))}
-            </div>
+                    <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-primary/30 to-transparent"></div>
+                    <CardContent className="relative flex flex-col items-center justify-center p-0 z-10">
+                        <span className="font-headline text-5xl text-primary-foreground drop-shadow-md group-hover:scale-110 transition-transform">
+                            {day}
+                        </span>
+                        <Icon className={cn("w-6 h-6 mt-1 transition-colors group-hover:scale-125", color)} />
+                    </CardContent>
+                </Card>
+            </Link>
+          ))}
         </div>
+        
+        <Banner>Forever & Always</Banner>
+      </div>
     </div>
   );
 }
