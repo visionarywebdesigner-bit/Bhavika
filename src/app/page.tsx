@@ -8,9 +8,10 @@ import * as Tone from 'tone';
 import { useToast } from '@/hooks/use-toast';
 import { FlashcardsScreen } from '@/components/app/FlashcardsScreen';
 import { LetterScreen } from '@/components/app/LetterScreen';
+import { AdventCalendarScreen } from '@/components/app/AdventCalendarScreen';
 import { cn } from '@/lib/utils';
 
-export type Stage = 'booting' | 'loaded' | 'transitioning' | 'welcome' | 'flashcards' | 'letter';
+export type Stage = 'booting' | 'loaded' | 'transitioning' | 'welcome' | 'flashcards' | 'letter' | 'advent';
 
 export default function Home() {
   const [stage, setStage] = useState<Stage>('booting');
@@ -70,10 +71,14 @@ export default function Home() {
     setStage('letter');
   }, []);
 
+  const handleGoToAdvent = useCallback(() => {
+    setStage('advent');
+  }, []);
+
 
   return (
     <main className="relative w-full h-dvh overflow-hidden bg-background">
-      <div className={cn("absolute inset-0 transition-opacity duration-1000", stage === 'letter' ? 'opacity-0 pointer-events-none' : 'opacity-100')}>
+      <div className={cn("absolute inset-0 transition-opacity duration-1000", (stage === 'letter' || stage === 'advent') ? 'opacity-0 pointer-events-none' : 'opacity-100')}>
         <BootScreen
           stage={stage}
           onLoadingComplete={handleLoadingComplete}
@@ -91,7 +96,8 @@ export default function Home() {
         {stage === 'flashcards' && <FlashcardsScreen onNext={handleGoToLetter} />}
       </div>
 
-      {stage === 'letter' && <LetterScreen />}
+      {stage === 'letter' && <LetterScreen onNext={handleGoToAdvent} />}
+      {stage === 'advent' && <AdventCalendarScreen />}
     </main>
   );
 }

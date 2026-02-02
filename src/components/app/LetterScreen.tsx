@@ -1,56 +1,55 @@
 "use client";
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { HeartIcon } from './HeartIcon';
 import { Card, CardContent } from '../ui/card';
 
-type EnvelopeState = 'closed' | 'shaking' | 'opening' | 'open';
+interface LetterScreenProps {
+  onNext: () => void;
+}
+
+type EnvelopeState = 'closed' | 'shaking' | 'opening';
 
 const Envelope = ({ state, onClick }: { state: EnvelopeState, onClick: () => void }) => {
-    const [isShaking, setIsShaking] = useState(false);
-
-    useEffect(() => {
-        if (state === 'shaking') {
-            setIsShaking(true);
-            const timer = setTimeout(() => setIsShaking(false), 500);
-            return () => clearTimeout(timer);
-        }
-    }, [state]);
-
     return (
         <div
             className={cn(
-                "relative w-[300px] h-[200px] cursor-pointer transition-opacity duration-1000",
-                isShaking && 'animate-shake',
-                (state === 'opening' || state === 'open') ? 'opacity-0' : 'opacity-100'
+                "relative w-[300px] h-[200px] cursor-pointer transition-transform duration-500",
+                state === 'shaking' && 'animate-shake'
             )}
             onClick={onClick}
         >
-            {/* Envelope Body */}
-            <div className="absolute w-full h-full bg-secondary rounded-md shadow-lg">
-                {/* Visual top part of the envelope back */}
-                <div className="absolute top-0 left-0 w-full h-1/2 bg-accent" style={{ clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}></div>
-            </div>
+            {/* Back part of envelope */}
+            <div className="absolute top-0 left-0 w-full h-full bg-secondary rounded-lg shadow-lg"></div>
 
-            {/* Top Flap */}
-            <div className="absolute top-0 left-0 w-full h-1/2">
-                <div className="absolute inset-0 bg-primary/80" style={{ clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}></div>
-            </div>
+            {/* Top Flap (part of the back that folds down) */}
+            <div
+                className={cn(
+                    "absolute top-0 left-0 w-full h-1/2 bg-primary/80 transition-transform duration-1000",
+                    state === 'opening' ? 'rotate-x-180' : ''
+                )}
+                style={{
+                    clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
+                    transformOrigin: 'top',
+                    transformStyle: 'preserve-3d',
+                }}
+            ></div>
+
+            {/* Bottom part of envelope front */}
+            <div className="absolute top-1/2 left-0 w-full h-1/2 bg-secondary" style={{ clipPath: 'polygon(0 0, 100% 0, 50% 100%)', transform: 'translateY(-1px)' }}></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-secondary" style={{ clipPath: 'polygon(0 0, 0 100%, 50% 50%)' }}></div>
+            <div className="absolute top-0 right-0 w-full h-full bg-secondary" style={{ clipPath: 'polygon(100% 0, 100% 100%, 50% 50%)' }}></div>
 
             {/* Seal */}
-            <HeartIcon className="absolute top-[calc(50%-20px)] left-1/2 -translate-x-1/2 w-8 h-8 text-primary z-10" />
+            <HeartIcon className={cn("absolute top-[45%] left-1/2 -translate-x-1/2 w-8 h-8 text-primary z-10 transition-opacity", state === 'opening' && 'opacity-0')} />
         </div>
     );
 };
 
 
-const Letter = () => {
-    const handleNext = () => {
-        // Next functionality to be implemented
-    };
-
+const Letter = ({ onNext }: { onNext: () => void }) => {
     return (
         <div className="absolute inset-0 flex items-center justify-center p-4">
             <Card className="w-full max-w-md animate-letter-slide-up shadow-2xl">
@@ -67,16 +66,16 @@ const Letter = () => {
                 </CardContent>
             </Card>
              <div className="absolute bottom-10 right-10 z-10 animate-fade-in animation-delay-3000">
-                <Button onClick={handleNext}>Next --&gt;</Button>
+                <Button onClick={onNext}>Next --&gt;</Button>
             </div>
         </div>
     )
 }
 
-export function LetterScreen() {
+export function LetterScreen({ onNext }: LetterScreenProps) {
   const [envelopeState, setEnvelopeState] = useState<EnvelopeState>('closed');
   const [showLetter, setShowLetter] = useState(false);
-
+  const [showEnvelope, setShowEnvelope] = useState(true);
 
   const handleEnvelopeClick = () => {
     if (envelopeState === 'closed') {
@@ -84,9 +83,10 @@ export function LetterScreen() {
       setTimeout(() => {
         setEnvelopeState('opening');
         setTimeout(() => {
-          setShowLetter(true);
-        }, 500); // letter appears a bit after envelope opens
-      }, 500); // Corresponds to shake animation duration
+            setShowEnvelope(false);
+            setShowLetter(true);
+        }, 1000); // Wait for flap to open
+      }, 500); // Shake duration
     }
   };
 
@@ -99,11 +99,13 @@ export function LetterScreen() {
             You mean Alot to me......
         </h1>
         
-        <div className="flex items-center justify-center">
-            <Envelope state={envelopeState} onClick={handleEnvelopeClick} />
-        </div>
+        {showEnvelope && (
+            <div className="flex items-center justify-center">
+                <Envelope state={envelopeState} onClick={handleEnvelopeClick} />
+            </div>
+        )}
 
-        {showLetter && <Letter />}
+        {showLetter && <Letter onNext={onNext} />}
     </div>
   );
 }
