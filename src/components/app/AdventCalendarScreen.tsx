@@ -1,20 +1,19 @@
 "use client";
 
 import { HeartIcon } from "./HeartIcon";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import * as Tone from 'tone';
 
 // Positions are percentages for top and left
 const dates = [
-    { day: 7, pos: { top: '25%', left: '28%' } },
-    { day: 8, pos: { top: '35%', left: '50%' } },
-    { day: 9, pos: { top: '25%', left: '72%' } },
-    { day: 10, pos: { top: '50%', left: '28%' } },
-    { day: 11, pos: { top: '60%', left: '50%' } },
-    { day: 12, pos: { top: '50%', left: '72%' } },
-    { day: 13, pos: { top: '78%', left: '38%' } },
-    { day: 14, pos: { top: '78%', left: '62%' } },
+    { day: 7, pos: { top: '25%', left: '35%' } },
+    { day: 8, pos: { top: '25%', left: '65%' } },
+    { day: 9, pos: { top: '45%', left: '20%' } },
+    { day: 10, pos: { top: '45%', left: '50%' } },
+    { day: 11, pos: { top: '45%', left: '80%' } },
+    { day: 12, pos: { top: '65%', left: '35%' } },
+    { day: 13, pos: { top: '65%', left: '65%' } },
+    { day: 14, pos: { top: '85%', left: '50%' } },
 ];
 
 const Banner = ({ children, className }: { children: React.ReactNode, className?: string }) => (
@@ -40,28 +39,24 @@ export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenPr
 
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-primary/10 to-accent animate-fade-in">
-        <div className="relative w-full max-w-xl text-center">
-
-            <div className="mb-4">
-                <Banner>Valentine's Week</Banner>
+        <div className="text-center">
+            <div className="mb-8">
+                <Banner>Happy Valentines</Banner>
             </div>
 
             <div className="relative w-[90vmin] h-[90vmin] max-w-xl max-h-xl mx-auto">
-                <HeartIcon className="absolute inset-0 w-full h-full text-primary/30 drop-shadow-xl" />
+                <HeartIcon className="absolute inset-0 w-full h-full text-primary/20 drop-shadow-xl" />
                 {dates.map(({ day, pos }) => (
-                <Button
+                <button
                     key={day}
                     onClick={() => handleDayClick(day)}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 w-[18%] h-[18%] rounded-lg text-3xl font-bold font-headline shadow-lg bg-secondary/80 hover:bg-secondary border-2 border-primary/40"
+                    className="absolute -translate-x-1/2 -translate-y-1/2 w-[22%] h-[22%] flex items-center justify-center text-primary-foreground font-bold font-headline text-3xl group transition-transform hover:scale-110"
                     style={{ top: pos.top, left: pos.left }}
                 >
-                    {day}
-                </Button>
+                    <HeartIcon className="absolute inset-0 w-full h-full text-primary/80 group-hover:text-primary transition-colors" />
+                    <span className="relative drop-shadow-md">{day}</span>
+                </button>
                 ))}
-            </div>
-
-            <div className="mt-4">
-                <Banner>Be Mine</Banner>
             </div>
         </div>
     </div>
