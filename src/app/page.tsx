@@ -97,7 +97,7 @@ export default function Home() {
       </div>
 
       {stage === 'letter' && <LetterScreen onNext={handleGoToAdvent} />}
-      {stage === 'advent' && <AdventCalendarScreen />}
+      {stage === 'advent' && <AdventCalendarScreen initializeAudio={initializeAudio} />}
     </main>
   );
 }
