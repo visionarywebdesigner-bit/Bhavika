@@ -6,14 +6,14 @@ import * as Tone from 'tone';
 
 // Positions are percentages for top and left
 const dates = [
-    { day: 7, pos: { top: '25%', left: '35%' } },
-    { day: 8, pos: { top: '25%', left: '65%' } },
-    { day: 9, pos: { top: '45%', left: '20%' } },
-    { day: 10, pos: { top: '45%', left: '50%' } },
-    { day: 11, pos: { top: '45%', left: '80%' } },
-    { day: 12, pos: { top: '65%', left: '35%' } },
-    { day: 13, pos: { top: '65%', left: '65%' } },
-    { day: 14, pos: { top: '85%', left: '50%' } },
+    { day: 7, pos: { top: '30%', left: '30%' } },
+    { day: 8, pos: { top: '30%', left: '70%' } },
+    { day: 9, pos: { top: '48%', left: '18%' } },
+    { day: 10, pos: { top: '50%', left: '50%' } },
+    { day: 11, pos: { top: '48%', left: '82%' } },
+    { day: 12, pos: { top: '70%', left: '35%' } },
+    { day: 13, pos: { top: '70%', left: '65%' } },
+    { day: 14, pos: { top: '90%', left: '50%' } },
 ];
 
 const Banner = ({ children, className }: { children: React.ReactNode, className?: string }) => (
