@@ -8,12 +8,12 @@ import * as Tone from 'tone';
 const dates = [
     { day: 7, pos: { top: '28%', left: '30%' } },
     { day: 8, pos: { top: '28%', left: '70%' } },
-    { day: 9, pos: { top: '45%', left: '18%' } },
+    { day: 9, pos: { top: '45%', left: '25%' } },
     { day: 10, pos: { top: '48%', left: '50%' } },
-    { day: 11, pos: { top: '45%', left: '82%' } },
+    { day: 11, pos: { top: '45%', left: '75%' } },
     { day: 12, pos: { top: '65%', left: '35%' } },
     { day: 13, pos: { top: '65%', left: '65%' } },
-    { day: 14, pos: { top: '80%', left: '50%' } },
+    { day: 14, pos: { top: '78%', left: '50%' } },
 ];
 
 const Banner = ({ children, className }: { children: React.ReactNode, className?: string }) => (
