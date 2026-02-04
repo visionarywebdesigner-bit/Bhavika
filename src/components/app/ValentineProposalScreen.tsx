@@ -20,10 +20,10 @@ export function ValentineProposalScreen({ onYes, onNo }: ValentineProposalScreen
         </CardHeader>
         <CardContent>
           <Image
-            src="https://media1.tenor.com/m/g3_t5i_N-vMAAAAC/hulkenberg.gif"
+            src="https://media1.tenor.com/m/b1_b2Iq32VAAAAAC/kawaii-cute.gif"
             alt="Cute GIF"
             width={150}
-            height={184}
+            height={125}
             className="mx-auto my-4 rounded-md"
             unoptimized
           />
