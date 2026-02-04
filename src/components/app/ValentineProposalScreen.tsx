@@ -45,7 +45,7 @@ export function ValentineProposalScreen({
             data-postid="10413028580779796295"
             data-share-method="host"
             data-aspect-ratio="1.22905"
-            data-width="150px"
+            data-width="200px"
           >
             <a href="https://tenor.com/view/hulkenberg-gif-10413028580779796295">
               Hulkenberg Sticker
