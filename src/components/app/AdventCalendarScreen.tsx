@@ -41,8 +41,14 @@ export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenPr
     }
   }
 
+  const getDayOrdinal = (day: number) => {
+    const s = ["th", "st", "nd", "rd"];
+    const v = day % 100;
+    return day + (s[(v - 20) % 10] || s[v] || s[0]);
+  };
+
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-primary/10 to-accent animate-fade-in">
+    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-primary/20 to-accent/90 animate-fade-in">
       <div className="text-center space-y-8">
         <Banner>Happy Valentines Week</Banner>
 
@@ -51,14 +57,15 @@ export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenPr
             <Link href={`/day/${day}`} key={day}>
                 <Card 
                     onClick={handleDayClick}
-                    className="relative aspect-[3/4] w-28 sm:w-32 flex flex-col items-center justify-center bg-card/60 backdrop-blur-sm border-primary/20 hover:border-primary hover:bg-card transition-all duration-300 transform hover:-translate-y-2 group cursor-pointer shadow-lg hover:shadow-2xl rounded-xl overflow-hidden"
+                    className="relative aspect-[3/4] w-28 sm:w-32 flex flex-col items-center justify-center bg-card/90 backdrop-blur-sm border-primary/40 hover:border-primary hover:bg-card transition-all duration-300 transform hover:-translate-y-2 group cursor-pointer shadow-lg hover:shadow-2xl rounded-xl overflow-hidden"
                 >
-                    <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-primary/30 to-transparent"></div>
+                    <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-primary/20 to-transparent"></div>
                     <CardContent className="relative flex flex-col items-center justify-center text-center p-2 z-10">
-                        <span className="font-headline text-5xl text-primary-foreground drop-shadow-md group-hover:scale-110 transition-transform">
-                            {day}
+                        <span className="font-headline text-5xl text-primary drop-shadow-md group-hover:scale-110 transition-transform">
+                            {getDayOrdinal(day)}
                         </span>
-                        <p className="font-body text-xs sm:text-sm font-bold text-primary-foreground/90 mt-1 group-hover:text-primary-foreground">
+                        <p className="font-body text-xl font-bold text-primary/80 -mt-2">Feb</p>
+                        <p className="font-body text-xs sm:text-sm font-bold text-foreground/90 mt-1 group-hover:text-foreground">
                           {title}
                         </p>
                         <Icon className={cn("w-6 h-6 mt-2 transition-colors group-hover:scale-125", color)} />
