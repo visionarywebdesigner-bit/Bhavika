@@ -90,7 +90,7 @@ export function LetterScreen({ onNext }: LetterScreenProps) {
   };
 
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-accent to-primary/50 animate-fade-in">
+    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-primary/80 to-primary/50 animate-fade-in">
       <h1
         className={cn(
           "text-5xl md:text-6xl font-headline text-primary-foreground mb-16 drop-shadow-lg transition-opacity duration-700",

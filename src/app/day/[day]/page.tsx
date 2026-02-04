@@ -31,7 +31,7 @@ export default function DayLetterPage({ params }: { params: { day: string } }) {
       <div className="flex-grow flex items-center justify-center">
         <div className="w-full max-w-5xl bg-card/80 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-10 grid md:grid-cols-2 gap-8 items-center">
           <div className="text-foreground/90 max-h-[60vh] overflow-y-auto pr-4">
-            <h1 className="text-primary font-headline text-4xl md:text-5xl mb-6">{dayContent.title}</h1>
+            <h1 className="text-foreground font-headline text-4xl md:text-5xl mb-6">{dayContent.title}</h1>
             <p className="whitespace-pre-line text-base md:text-lg leading-relaxed">{dayContent.letter}</p>
           </div>
           <div className="relative aspect-square md:aspect-[3/4] rounded-xl overflow-hidden shadow-lg">

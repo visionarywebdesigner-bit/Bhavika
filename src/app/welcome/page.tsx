@@ -12,7 +12,7 @@ export default function WelcomePage() {
     }, [router]);
     
     return (
-        <main className="flex items-center justify-center min-h-screen bg-gradient-to-b from-accent to-primary animate-fade-in">
+        <main className="flex items-center justify-center min-h-screen bg-gradient-to-b from-primary/80 to-primary animate-fade-in">
             <div className="text-center animate-fade-in-up">
                 <h1 className="text-4xl md:text-6xl font-headline text-primary-foreground mb-4 drop-shadow-md">
                   To my Sweetu, Bhavika
