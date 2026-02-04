@@ -14,8 +14,7 @@ const getImage = (id: string) => {
         return {
             id: 'fallback',
             description: 'A placeholder image',
-            imageUrl: 'https://picsum.photos/seed/fallback/600/800',
-            imageHint: 'placeholder'
+            imageUrl: '/images/valentine-heart.jpg'
         };
     }
     return img;

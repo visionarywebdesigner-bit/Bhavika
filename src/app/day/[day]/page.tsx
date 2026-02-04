@@ -40,7 +40,6 @@ export default function DayLetterPage({ params }: { params: { day: string } }) {
               alt={dayContent.image.description}
               fill
               className="object-cover"
-              data-ai-hint={dayContent.image.imageHint}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>

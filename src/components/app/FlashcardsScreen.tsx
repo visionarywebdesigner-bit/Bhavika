@@ -115,7 +115,6 @@ export function FlashcardsScreen({ onNext }: FlashcardsScreenProps) {
                         alt={flashcard.image.description}
                         fill
                         className="object-cover"
-                        data-ai-hint={flashcard.image.imageHint}
                         sizes="(max-width: 640px) 80vw, 320px"
                       />
                     </div>

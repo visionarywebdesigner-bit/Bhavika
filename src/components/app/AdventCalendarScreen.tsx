@@ -58,22 +58,22 @@ export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenPr
     <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-primary/20 to-accent/90 animate-fade-in overflow-hidden">
         {cornerImage1 && (
             <div className="absolute top-4 left-4 w-24 h-24 sm:w-32 sm:h-32 transform -rotate-12 opacity-70">
-                <Image src={cornerImage1.imageUrl} alt={cornerImage1.description} fill className="object-cover rounded-2xl shadow-lg" data-ai-hint={cornerImage1.imageHint} sizes="128px" />
+                <Image src={cornerImage1.imageUrl} alt={cornerImage1.description} fill className="object-cover rounded-2xl shadow-lg" sizes="128px" />
             </div>
         )}
         {cornerImage2 && (
             <div className="absolute top-4 right-4 w-24 h-24 sm:w-32 sm:h-32 transform rotate-12 opacity-70">
-                <Image src={cornerImage2.imageUrl} alt={cornerImage2.description} fill className="object-cover rounded-2xl shadow-lg" data-ai-hint={cornerImage2.imageHint} sizes="128px" />
+                <Image src={cornerImage2.imageUrl} alt={cornerImage2.description} fill className="object-cover rounded-2xl shadow-lg" sizes="128px" />
             </div>
         )}
         {cornerImage3 && (
             <div className="absolute bottom-4 left-4 w-24 h-24 sm:w-32 sm:h-32 transform rotate-12 opacity-70">
-                <Image src={cornerImage3.imageUrl} alt={cornerImage3.description} fill className="object-cover rounded-2xl shadow-lg" data-ai-hint={cornerImage3.imageHint} sizes="128px" />
+                <Image src={cornerImage3.imageUrl} alt={cornerImage3.description} fill className="object-cover rounded-2xl shadow-lg" sizes="128px" />
             </div>
         )}
         {cornerImage4 && (
             <div className="absolute bottom-4 right-4 w-24 h-24 sm:w-32 sm:h-32 transform -rotate-12 opacity-70">
-                <Image src={cornerImage4.imageUrl} alt={cornerImage4.description} fill className="object-cover rounded-2xl shadow-lg" data-ai-hint={cornerImage4.imageHint} sizes="128px" />
+                <Image src={cornerImage4.imageUrl} alt={cornerImage4.description} fill className="object-cover rounded-2xl shadow-lg" sizes="128px" />
             </div>
         )}
 

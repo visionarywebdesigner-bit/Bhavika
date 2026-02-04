@@ -25,7 +25,6 @@ export default function WelcomePage() {
                         alt={image1.description}
                         fill
                         className="object-cover"
-                        data-ai-hint={image1.imageHint}
                         sizes="(max-width: 768px) 50vw, 33vw"
                     />
                  </div>
@@ -45,7 +44,6 @@ export default function WelcomePage() {
                         alt={image2.description}
                         fill
                         className="object-cover"
-                        data-ai-hint={image2.imageHint}
                         sizes="(max-width: 768px) 50vw, 33vw"
                     />
                  </div>
