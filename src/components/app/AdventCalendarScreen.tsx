@@ -2,19 +2,21 @@
 
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
-import { Heart, Gift, Mail, Star, Music, Key, Diamond, Trophy } from 'lucide-react';
+import { Heart, Gift, Star, Music, Key, Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import * as Tone from 'tone';
+import { FlowerIcon } from './FlowerIcon';
+import { KissIcon } from './KissIcon';
 
 const days = [
-  { day: 7, icon: Heart, color: 'text-pink-400' },
-  { day: 8, icon: Gift, color: 'text-red-400' },
-  { day: 9, icon: Mail, color: 'text-rose-400' },
-  { day: 10, icon: Star, color: 'text-pink-400' },
-  { day: 11, icon: Music, color: 'text-red-400' },
-  { day: 12, icon: Key, color: 'text-rose-400' },
-  { day: 13, icon: Diamond, color: 'text-pink-400' },
-  { day: 14, icon: Trophy, color: 'text-red-400' },
+  { day: 7, title: "Rose Day", icon: FlowerIcon, color: 'text-pink-400' },
+  { day: 8, title: "Propose Day", icon: Gift, color: 'text-red-400' },
+  { day: 9, title: "Chocolate Day", icon: Heart, color: 'text-rose-400' },
+  { day: 10, title: "Teddy Day", icon: Star, color: 'text-pink-400' },
+  { day: 11, title: "Promise Day", icon: Music, color: 'text-red-400' },
+  { day: 12, title: "Hug Day", icon: Key, color: 'text-rose-400' },
+  { day: 13, title: "Kiss Day", icon: KissIcon, color: 'text-pink-400' },
+  { day: 14, title: "Valentine's Day", icon: Trophy, color: 'text-red-400' },
 ];
 
 const Banner = ({ children, className }: { children: React.ReactNode, className?: string }) => (
@@ -42,21 +44,24 @@ export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenPr
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-primary/10 to-accent animate-fade-in">
       <div className="text-center space-y-8">
-        <Banner>A Countdown to Our Day</Banner>
+        <Banner>Happy Valentines Week</Banner>
 
         <div className="grid grid-cols-4 gap-4">
-          {days.map(({ day, icon: Icon, color }) => (
+          {days.map(({ day, title, icon: Icon, color }) => (
             <Link href={`/day/${day}`} key={day}>
                 <Card 
                     onClick={handleDayClick}
                     className="relative aspect-[3/4] w-28 sm:w-32 flex flex-col items-center justify-center bg-card/60 backdrop-blur-sm border-primary/20 hover:border-primary hover:bg-card transition-all duration-300 transform hover:-translate-y-2 group cursor-pointer shadow-lg hover:shadow-2xl rounded-xl overflow-hidden"
                 >
                     <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-primary/30 to-transparent"></div>
-                    <CardContent className="relative flex flex-col items-center justify-center p-0 z-10">
+                    <CardContent className="relative flex flex-col items-center justify-center text-center p-2 z-10">
                         <span className="font-headline text-5xl text-primary-foreground drop-shadow-md group-hover:scale-110 transition-transform">
                             {day}
                         </span>
-                        <Icon className={cn("w-6 h-6 mt-1 transition-colors group-hover:scale-125", color)} />
+                        <p className="font-body text-xs sm:text-sm font-bold text-primary-foreground/90 mt-1 group-hover:text-primary-foreground">
+                          {title}
+                        </p>
+                        <Icon className={cn("w-6 h-6 mt-2 transition-colors group-hover:scale-125", color)} />
                     </CardContent>
                 </Card>
             </Link>
