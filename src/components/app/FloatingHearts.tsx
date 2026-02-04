@@ -17,7 +17,7 @@ interface Heart {
 
 export function FloatingHearts({ onTransitionEnd }: FloatingHeartsProps) {
   const [isFadingOut, setIsFadingOut] = useState(false);
-  const nicknames = useMemo(() => ["Sweetu", "Cutu", "Jaan", "Bhavika", "Bhavi", "Bhavu", "Bhavya"], []);
+  const nicknames = useMemo(() => ["Bhavu", "Sweetu", "Cutu", "Jaan", "Bhavika", "Bhavi", "Bhavya"], []);
   const [hearts, setHearts] = useState<Heart[]>([]);
   const [isAnimatingIn, setIsAnimatingIn] = useState(false);
 
