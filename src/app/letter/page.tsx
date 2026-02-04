@@ -6,7 +6,7 @@ import { useCallback } from "react";
 export default function LetterPage() {
     const router = useRouter();
     const onNext = useCallback(() => {
-        router.push('/advent');
+        router.push('/flashcards');
     }, [router]);
 
     return <LetterScreen onNext={onNext} />;
