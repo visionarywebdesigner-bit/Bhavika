@@ -11,7 +11,7 @@ export default function WelcomePage() {
     const router = useRouter();
     useEffect(() => {
         const timer = setTimeout(() => {
-            router.push('/proposal');
+            router.push('/flashcards');
         }, 5000); // Increased time to admire photos
         return () => clearTimeout(timer);
     }, [router]);

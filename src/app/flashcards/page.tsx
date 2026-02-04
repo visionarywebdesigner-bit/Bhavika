@@ -6,7 +6,7 @@ import { useCallback } from "react";
 export default function FlashcardsPage() {
     const router = useRouter();
     const onNext = useCallback(() => {
-        router.push('/advent');
+        router.push('/proposal');
     }, [router]);
 
     return <FlashcardsScreen onNext={onNext} />;
