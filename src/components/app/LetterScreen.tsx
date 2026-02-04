@@ -12,68 +12,46 @@ interface LetterScreenProps {
 
 type LetterState = 'waiting' | 'revealing';
 
-const OpenEnvelope = ({ state, onClick }: { state: LetterState; onClick: () => void }) => {
-  const letterRevealed = state === 'revealing';
+const Envelope = ({ onClick }: { onClick: () => void }) => {
   return (
     <div
-      className={cn(
-        "relative w-[300px] sm:w-[350px] h-[200px] sm:h-[233px] cursor-pointer transition-all duration-700",
-        "hover:scale-105",
-        letterRevealed && 'opacity-0 -translate-y-8'
-      )}
+      className="relative w-[300px] sm:w-[350px] h-[200px] sm:h-[233px] cursor-pointer transition-transform duration-300 hover:scale-105"
       onClick={onClick}
     >
-      {/* Letter peeking out */}
-      <div
-        className={cn(
-          "absolute top-0 left-[2.5%] w-[95%] h-full bg-card rounded-t-lg shadow-md z-10 transition-transform duration-700 ease-out",
-          letterRevealed ? '-translate-y-[100%]' : 'translate-y-[5%]'
-        )}
-      >
-        <div className="flex w-full justify-center pt-4">
-          <HeartIcon
-            className={cn(
-              "w-12 h-12 text-primary transition-opacity duration-300",
-              letterRevealed && 'opacity-0'
-            )}
-          />
-        </div>
-      </div>
+      {/* Letter paper inside, peeking from the bottom */}
+      <div className="absolute w-[98%] h-[99%] bg-card rounded-lg top-[0.5%] left-[1%]"></div>
 
-      {/* Back of envelope (the main rectangle) */}
-      <div className="absolute inset-0 bg-primary/90 rounded-lg shadow-lg"></div>
+      {/* Back of the envelope */}
+      <div className="absolute w-full h-full bg-primary/80 rounded-lg shadow-lg"></div>
 
-      {/* Top flap (tucked behind) */}
+      {/* Front flaps */}
       <div
-        className="absolute top-0 left-0 w-full h-1/2 bg-rose-400"
-        style={{
-          clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
-          zIndex: 0,
-          transform: 'translateY(-1px)',
-        }}
+        className="absolute top-0 left-0 w-[50.5%] h-full bg-primary"
+        style={{ clipPath: 'polygon(0 0, 100% 50%, 0 100%)' }}
       ></div>
-
-      {/* Envelope Front (made of 3 triangles) */}
-      <div className="absolute inset-0 z-20">
-        {/* Left Flap */}
-        <div
-          className="absolute top-0 left-0 w-1/2 h-full bg-primary/80"
-          style={{ clipPath: 'polygon(0 0, 100% 50%, 0 100%)' }}
-        ></div>
-        {/* Right Flap */}
-        <div
-          className="absolute top-0 right-0 w-1/2 h-full bg-primary/80"
-          style={{ clipPath: 'polygon(100% 0, 0 50%, 100% 100%)' }}
-        ></div>
-        {/* Bottom Flap */}
-        <div
-          className="absolute bottom-0 left-0 w-full h-1/2 bg-primary"
-          style={{ clipPath: 'polygon(0 100%, 100% 100%, 50% 0)' }}
-        ></div>
+      <div
+        className="absolute top-0 right-0 w-[50.5%] h-full bg-primary"
+        style={{ clipPath: 'polygon(100% 0, 0 50%, 100% 100%)' }}
+      ></div>
+      <div
+        className="absolute bottom-0 left-0 w-full h-[50.5%] bg-primary"
+        style={{ clipPath: 'polygon(50% 0, 0 100%, 100% 100%)' }}
+      ></div>
+      
+      {/* Top flap */}
+      <div
+        className="absolute top-0 left-0 w-full h-[50.5%] bg-card"
+        style={{ clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}
+      ></div>
+      
+      {/* Heart */}
+      <div className="absolute top-[22%] left-1/2 -translate-x-1/2">
+        <HeartIcon className="w-10 h-10 text-primary" />
       </div>
     </div>
   );
 };
+
 
 const Letter = ({ onNext }: { onNext: () => void }) => {
   return (
@@ -107,7 +85,7 @@ export function LetterScreen({ onNext }: LetterScreenProps) {
       setLetterState('revealing');
       setTimeout(() => {
         setShowFullLetter(true);
-      }, 700); // Time for letter to slide out
+      }, 500); // Time for fade out
     }
   };
 
@@ -122,12 +100,15 @@ export function LetterScreen({ onNext }: LetterScreenProps) {
         You mean Alot to me......
       </h1>
 
-      {!showFullLetter && (
-        <div className="flex items-center justify-center">
-          <OpenEnvelope state={letterState} onClick={handleEnvelopeClick} />
-        </div>
-      )}
-
+      <div
+        className={cn(
+          "flex items-center justify-center transition-opacity duration-500",
+          letterState === 'revealing' && 'opacity-0'
+        )}
+      >
+        {!showFullLetter && <Envelope onClick={handleEnvelopeClick} />}
+      </div>
+      
       {showFullLetter && <Letter onNext={onNext} />}
     </div>
   );
