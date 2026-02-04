@@ -12,7 +12,7 @@ export default function WelcomePage() {
     useEffect(() => {
         const timer = setTimeout(() => {
             router.push('/flashcards');
-        }, 5000); // Increased time to admire photos
+        }, 8000); // Increased time to admire photos
         return () => clearTimeout(timer);
     }, [router]);
     

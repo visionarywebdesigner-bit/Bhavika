@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 import * as Tone from 'tone';
 import { FlowerIcon } from './FlowerIcon';
 import { KissIcon } from './KissIcon';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const days = [
   { day: 7, title: "Rose Day", icon: FlowerIcon, color: 'text-pink-400' },
@@ -31,6 +33,11 @@ interface AdventCalendarScreenProps {
   initializeAudio: () => Promise<boolean>;
 }
 
+const cornerImage1 = PlaceHolderImages.find(p => p.id === 'advent-corner-1');
+const cornerImage2 = PlaceHolderImages.find(p => p.id === 'advent-corner-2');
+const cornerImage3 = PlaceHolderImages.find(p => p.id === 'advent-corner-3');
+const cornerImage4 = PlaceHolderImages.find(p => p.id === 'advent-corner-4');
+
 export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenProps) {
   
   const handleDayClick = async () => {
@@ -48,8 +55,29 @@ export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenPr
   };
 
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-primary/20 to-accent/90 animate-fade-in">
-      <div className="text-center space-y-8">
+    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-primary/20 to-accent/90 animate-fade-in overflow-hidden">
+        {cornerImage1 && (
+            <div className="absolute top-4 left-4 w-24 h-24 sm:w-32 sm:h-32 transform -rotate-12 opacity-70">
+                <Image src={cornerImage1.imageUrl} alt={cornerImage1.description} fill className="object-cover rounded-2xl shadow-lg" data-ai-hint={cornerImage1.imageHint} sizes="128px" />
+            </div>
+        )}
+        {cornerImage2 && (
+            <div className="absolute top-4 right-4 w-24 h-24 sm:w-32 sm:h-32 transform rotate-12 opacity-70">
+                <Image src={cornerImage2.imageUrl} alt={cornerImage2.description} fill className="object-cover rounded-2xl shadow-lg" data-ai-hint={cornerImage2.imageHint} sizes="128px" />
+            </div>
+        )}
+        {cornerImage3 && (
+            <div className="absolute bottom-4 left-4 w-24 h-24 sm:w-32 sm:h-32 transform rotate-12 opacity-70">
+                <Image src={cornerImage3.imageUrl} alt={cornerImage3.description} fill className="object-cover rounded-2xl shadow-lg" data-ai-hint={cornerImage3.imageHint} sizes="128px" />
+            </div>
+        )}
+        {cornerImage4 && (
+            <div className="absolute bottom-4 right-4 w-24 h-24 sm:w-32 sm:h-32 transform -rotate-12 opacity-70">
+                <Image src={cornerImage4.imageUrl} alt={cornerImage4.description} fill className="object-cover rounded-2xl shadow-lg" data-ai-hint={cornerImage4.imageHint} sizes="128px" />
+            </div>
+        )}
+
+      <div className="text-center space-y-8 relative z-10">
         <Banner>Happy Valentines Week</Banner>
 
         <div className="grid grid-cols-4 gap-4">

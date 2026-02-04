@@ -59,6 +59,42 @@
       "description": "Another romantic photo for the welcome screen.",
       "imageUrl": "https://images.unsplash.com/photo-1566759996874-04d713cc224a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cm9tYW50aWMlMjBjb3VwbGV8ZW58MHx8fHwxNzcwMTMxODQzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "romantic couple"
+    },
+    {
+      "id": "flashcard-image-1",
+      "description": "A romantic photo for a flashcard.",
+      "imageUrl": "https://images.unsplash.com/photo-1497120573086-6219573cf71c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjb3VwbGUlMjBsb3ZlfGVufDB8fHx8MTc3MDE3ODkzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "couple love"
+    },
+    {
+      "id": "flashcard-image-2",
+      "description": "Another romantic photo for a flashcard.",
+      "imageUrl": "https://images.unsplash.com/photo-1727945988054-b9ba07e71172?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjb3VwbGUlMjBzbWlsaW5nfGVufDB8fHx8MTc3MDIzNTYyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "couple smiling"
+    },
+    {
+      "id": "advent-corner-1",
+      "description": "A decorative corner image for the advent calendar.",
+      "imageUrl": "https://images.unsplash.com/photo-1525328302834-764f32276842?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsb3ZlJTIwc3ltYm9sfGVufDB8fHx8MTc3MDIzNTYyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "love symbol"
+    },
+    {
+      "id": "advent-corner-2",
+      "description": "A decorative corner image for the advent calendar.",
+      "imageUrl": "https://images.unsplash.com/photo-1738194843799-9e3cb18da967?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxoZWFydCUyMHNoYXBlfGVufDB8fHx8MTc3MDIzNTYyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "heart shape"
+    },
+    {
+      "id": "advent-corner-3",
+      "description": "A decorative corner image for the advent calendar.",
+      "imageUrl": "https://images.unsplash.com/photo-1604881990409-b9f246db39da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb3VwbGUlMjBoYW5kc3xlbnwwfHx8fDE3NzAyMzU2MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "couple hands"
+    },
+    {
+      "id": "advent-corner-4",
+      "description": "A decorative corner image for the advent calendar.",
+      "imageUrl": "https://images.unsplash.com/photo-1616303559261-095c884e7fd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmbG93ZXIlMjBwZXRhbHxlbnwwfHx8fDE3NzAyMzU2MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "flower petal"
     }
   ]
 }
