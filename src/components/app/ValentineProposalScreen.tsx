@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ProposalSticker } from './ProposalSticker';
+import Image from 'next/image';
 
 interface ValentineProposalScreenProps {
   onYes: () => void;
@@ -19,7 +19,14 @@ export function ValentineProposalScreen({ onYes, onNo }: ValentineProposalScreen
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <ProposalSticker className="w-32 h-32 mx-auto my-4" />
+          <Image
+            src="https://media1.tenor.com/m/g3_t5i_N-vMAAAAC/hulkenberg.gif"
+            alt="Cute GIF"
+            width={150}
+            height={184}
+            className="mx-auto my-4 rounded-md"
+            unoptimized
+          />
         </CardContent>
         <CardFooter className="flex justify-center gap-4">
           <Button onClick={onYes} size="lg" className="font-bold">Yes</Button>
