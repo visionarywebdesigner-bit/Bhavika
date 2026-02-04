@@ -61,6 +61,16 @@
       "imageUrl": "/images/flashcard-2.jpg"
     },
     {
+      "id": "flashcard-image-3",
+      "description": "A third romantic photo for a flashcard.",
+      "imageUrl": "/images/flashcard-3.jpg"
+    },
+    {
+      "id": "flashcard-image-4",
+      "description": "A fourth romantic photo for a flashcard.",
+      "imageUrl": "/images/flashcard-4.jpg"
+    },
+    {
       "id": "advent-corner-1",
       "description": "A decorative corner image for the advent calendar.",
       "imageUrl": "/images/advent-corner-1.jpg"

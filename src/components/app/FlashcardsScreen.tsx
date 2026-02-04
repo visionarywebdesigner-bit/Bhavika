@@ -17,6 +17,8 @@ interface FlashcardsScreenProps {
 export function FlashcardsScreen({ onNext }: FlashcardsScreenProps) {
   const image1 = PlaceHolderImages.find(p => p.id === 'flashcard-image-1');
   const image2 = PlaceHolderImages.find(p => p.id === 'flashcard-image-2');
+  const image3 = PlaceHolderImages.find(p => p.id === 'flashcard-image-3');
+  const image4 = PlaceHolderImages.find(p => p.id === 'flashcard-image-4');
 
   const initialCards = useMemo(() => [
     {
@@ -32,23 +34,19 @@ export function FlashcardsScreen({ onNext }: FlashcardsScreenProps) {
     {
       id: 3,
       text: "I never knew what love was until I met you. Thank you for being with me, I just cant get enough of you nor Thank you enough for being mine",
+      image: image3,
     },
     {
       id: 4,
       text: "My heart beats for you, and only you. Always and forever.",
-      widget: (
-        <div className="absolute bottom-6 right-6 flex items-end gap-1">
-          <HeartIcon className="w-6 h-6 text-primary/70 -rotate-12" />
-          <HeartIcon className="w-8 h-8 text-primary/90 rotate-6" />
-        </div>
-      ),
+      image: image4,
     },
     {
       id: 5,
       text: "I\nLOVE\nYOUUU",
       isFinal: true,
     },
-  ], [image1, image2]);
+  ], [image1, image2, image3, image4]);
 
   const [cards, setCards] = useState(initialCards);
   const [isShuffling, setIsShuffling] = useState(false);

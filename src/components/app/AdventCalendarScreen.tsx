@@ -2,23 +2,26 @@
 
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
-import { Heart, Gift, Star, Music, Key, Trophy } from 'lucide-react';
+import { Handshake, Users, HeartHandshake } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import * as Tone from 'tone';
-import { FlowerIcon } from './FlowerIcon';
+import { RoseIcon } from './RoseIcon';
 import { KissIcon } from './KissIcon';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { RingIcon } from './RingIcon';
+import { ChocolateIcon } from './ChocolateIcon';
+import { TeddyBearIcon } from './TeddyBearIcon';
 
 const days = [
-  { day: 7, title: "Rose Day", icon: FlowerIcon, color: 'text-pink-400' },
-  { day: 8, title: "Propose Day", icon: Gift, color: 'text-red-400' },
-  { day: 9, title: "Chocolate Day", icon: Heart, color: 'text-rose-400' },
-  { day: 10, title: "Teddy Day", icon: Star, color: 'text-pink-400' },
-  { day: 11, title: "Promise Day", icon: Music, color: 'text-red-400' },
-  { day: 12, title: "Hug Day", icon: Key, color: 'text-rose-400' },
+  { day: 7, title: "Rose Day", icon: RoseIcon, color: 'text-pink-400' },
+  { day: 8, title: "Propose Day", icon: RingIcon, color: 'text-red-400' },
+  { day: 9, title: "Chocolate Day", icon: ChocolateIcon, color: 'text-rose-400' },
+  { day: 10, title: "Teddy Day", icon: TeddyBearIcon, color: 'text-pink-400' },
+  { day: 11, title: "Promise Day", icon: Handshake, color: 'text-red-400' },
+  { day: 12, title: "Hug Day", icon: Users, color: 'text-rose-400' },
   { day: 13, title: "Kiss Day", icon: KissIcon, color: 'text-pink-400' },
-  { day: 14, title: "Valentine's Day", icon: Trophy, color: 'text-red-400' },
+  { day: 14, title: "Valentine's Day", icon: HeartHandshake, color: 'text-red-400' },
 ];
 
 const Banner = ({ children, className }: { children: React.ReactNode, className?: string }) => (
