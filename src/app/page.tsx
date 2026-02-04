@@ -79,8 +79,8 @@ export default function Home() {
   const handleProposalNo = () => {
     toast({
       variant: 'destructive',
-      title: 'Error: Thats not possible haha',
-      description: 'Click Yes.',
+      title: "Error: That's not possible",
+      description: 'haha',
     });
   };
 

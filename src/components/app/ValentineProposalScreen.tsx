@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { FingerprintHeartIcon } from './FingerprintHeartIcon';
+import { ProposalSticker } from './ProposalSticker';
 
 interface ValentineProposalScreenProps {
   onYes: () => void;
@@ -19,7 +19,7 @@ export function ValentineProposalScreen({ onYes, onNo }: ValentineProposalScreen
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <FingerprintHeartIcon className="w-24 h-24 text-primary mx-auto my-6 animate-beat drop-shadow-lg" />
+          <ProposalSticker className="w-32 h-32 mx-auto my-4" />
         </CardContent>
         <CardFooter className="flex justify-center gap-4">
           <Button onClick={onYes} size="lg" className="font-bold">Yes</Button>
