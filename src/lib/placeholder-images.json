@@ -1,3 +1,52 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "rose-bouquet",
+      "description": "A beautiful bouquet of red roses.",
+      "imageUrl": "https://images.unsplash.com/photo-1620346328449-f8fb90a40ad5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZWQlMjByb3Nlc3xlbnwwfHx8fDE3NzAyMzM1MjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "red roses"
+    },
+    {
+      "id": "proposal-ring",
+      "description": "An engagement ring in a box.",
+      "imageUrl": "https://images.unsplash.com/photo-1639078007551-b14a57d62c8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxlbmdhZ2VtZW50JTIwcmluZ3xlbnwwfHx8fDE3NzAyMzM1MjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "engagement ring"
+    },
+    {
+      "id": "chocolates",
+      "description": "A box of assorted chocolates.",
+      "imageUrl": "https://images.unsplash.com/photo-1481391319762-47dff72954d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxib3glMjBjaG9jb2xhdGVzfGVufDB8fHx8MTc3MDIzMzUyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "box chocolates"
+    },
+    {
+      "id": "teddy-bear",
+      "description": "A cute brown teddy bear.",
+      "imageUrl": "https://images.unsplash.com/photo-1581312742770-ce89199554af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGVkZHklMjBiZWFyfGVufDB8fHx8MTc3MDIzMzUyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "teddy bear"
+    },
+    {
+      "id": "promise-hands",
+      "description": "Two hands making a pinky promise.",
+      "imageUrl": "https://images.unsplash.com/photo-1609075066652-213f4f1016c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaW5reSUyMHByb21pc2V8ZW58MHx8fHwxNzcwMjMzNTIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pinky promise"
+    },
+    {
+      "id": "couple-hugging",
+      "description": "A couple embracing in a warm hug.",
+      "imageUrl": "https://images.unsplash.com/photo-1559435578-231f6137aac5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb3VwbGUlMjBodWdnaW5nfGVufDB8fHx8MTc3MDE3ODkzOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "couple hugging"
+    },
+    {
+      "id": "couple-kissing",
+      "description": "A silhouette of a couple kissing.",
+      "imageUrl": "https://images.unsplash.com/reserve/165aTVpzTXGMXu1azUdy_IMG_8468.JPG?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb3VwbGUlMjBraXNzaW5nfGVufDB8fHx8MTc3MDE3ODkzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "couple kissing"
+    },
+    {
+      "id": "valentine-heart",
+      "description": "A large decorative valentine heart.",
+      "imageUrl": "https://images.unsplash.com/photo-1738979120122-2a5b5a614173?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx2YWxlbnRpbmUlMjBoZWFydHxlbnwwfHx8fDE3NzAyMzM1MjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "valentine heart"
+    }
+  ]
 }

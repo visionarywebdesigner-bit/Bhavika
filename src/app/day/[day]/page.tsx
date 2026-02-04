@@ -1,70 +1,68 @@
 'use client';
 
+import { valentinesData } from '@/lib/valentines-data';
+import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { HeartIcon } from '@/components/app/HeartIcon';
-import { ArrowLeft, Heart, Gift, Star, Music, Key, Trophy } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
-import React from 'react';
-import { FlowerIcon } from '@/components/app/FlowerIcon';
-import { KissIcon } from '@/components/app/KissIcon';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
-export default function DayPage({ params }: { params: { day: string } }) {
-  const router = useRouter();
+export default function DayLetterPage({ params }: { params: { day: string } }) {
+  const dayNumber = parseInt(params.day, 10);
+  const dayContent = valentinesData.find(d => d.day === dayNumber);
 
-  const dayDetails: {[key: string]: { title: string, message: string, icon: React.ElementType, color: string }} = {
-    '7': { title: "Rose Day", message: "Exchanging roses as a symbol of affection. 🌹", icon: FlowerIcon, color: 'text-pink-400' },
-    '8': { title: "Propose Day", message: "A day to express feelings and make proposals. 💍", icon: Gift, color: 'text-red-400' },
-    '9': { title: "Chocolate Day", message: "Sharing chocolates as tokens of love. 🍫", icon: Heart, color: 'text-rose-400' },
-    '10': { title: "Teddy Day", message: "Gifting soft toys to partners. 🧸", icon: Star, color: 'text-pink-400' },
-    '11': { title: "Promise Day", message: "Strengthening bonds through commitments. 🤞", icon: Music, color: 'text-red-400' },
-    '12': { title: "Hug Day", message: "Offering comfort and affection. 🤗", icon: Key, color: 'text-rose-400' },
-    '13': { title: "Kiss Day", message: "Expressing intimacy. 💋", icon: KissIcon, color: 'text-pink-400' },
-    '14': { title: "Valentine's Day", message: "The main day of celebration. ❤️", icon: Trophy, color: 'text-red-400' },
-  };
-  
-  const detail = dayDetails[params.day] || { title: "A Special Day", message: "A special surprise just for you.", icon: Heart, color: 'text-primary' };
-  const Icon = detail.icon;
+  if (!dayContent) {
+    notFound();
+  }
+
+  const isFirstDay = dayNumber === 7;
+  const isLastDay = dayNumber === 14;
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-primary/10 to-accent p-8 overflow-hidden">
-        {/* Background decorations */}
-        <HeartIcon className="absolute -top-12 -left-12 w-32 h-32 text-primary/10 -rotate-45 opacity-50" />
-        <Star className="absolute top-20 right-10 w-16 h-16 text-primary/10 rotate-12 opacity-50" />
-        <Gift className="absolute bottom-10 left-10 w-20 h-20 text-primary/10 opacity-50" />
-        <HeartIcon className="absolute -bottom-12 -right-12 w-40 h-40 text-primary/10 rotate-45 opacity-50" />
-
-
-      <div className="animate-fade-in-up">
-        <div className="absolute top-8 left-8 z-20">
-          <Button variant="ghost" size="icon" onClick={() => router.back()} aria-label="Go back">
-              <ArrowLeft className="h-6 w-6 text-primary" />
+    <main className="min-h-screen bg-gradient-to-b from-primary/10 to-accent p-4 sm:p-8 flex flex-col animate-fade-in">
+      <div className="flex-none w-full max-w-5xl mx-auto">
+        <Link href="/advent">
+          <Button variant="ghost">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Calendar
           </Button>
+        </Link>
+      </div>
+      <div className="flex-grow flex items-center justify-center">
+        <div className="w-full max-w-5xl bg-card/80 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-10 grid md:grid-cols-2 gap-8 items-center">
+          <div className="text-foreground/90 max-h-[60vh] overflow-y-auto pr-4">
+            <h1 className="text-primary font-headline text-4xl md:text-5xl mb-6">{dayContent.title}</h1>
+            <p className="whitespace-pre-line text-base md:text-lg leading-relaxed">{dayContent.letter}</p>
+          </div>
+          <div className="relative aspect-square md:aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src={dayContent.image.imageUrl}
+              alt={dayContent.image.description}
+              fill
+              className="object-cover"
+              data-ai-hint={dayContent.image.imageHint}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
         </div>
-        <Card className="w-full max-w-xl text-center shadow-2xl bg-card/80 backdrop-blur-sm rounded-2xl border border-primary/10 hover:shadow-primary/20 transition-shadow duration-300">
-          <CardContent className="p-8 md:p-12">
-            <div className="flex justify-center items-center gap-4 mb-6">
-                <Icon className={cn("w-16 h-16", detail.color)} />
-                <div className="text-center">
-                    <h1 className="font-headline text-5xl md:text-6xl text-primary">
-                        Day {params.day}
-                    </h1>
-                    <h2 className="font-body text-2xl md:text-3xl text-foreground/80 mt-2">{detail.title}</h2>
-                </div>
-                <Icon className={cn("w-16 h-16", detail.color)} />
-            </div>
-
-            <div className="min-h-[150px] flex items-center justify-center">
-                <p className="font-body text-2xl md:text-3xl text-foreground/90 leading-relaxed">
-                {detail.message}
-                </p>
-            </div>
-            
-            <HeartIcon className="w-20 h-20 text-primary mx-auto mt-8 animate-beat drop-shadow-lg" />
-
-          </CardContent>
-        </Card>
+      </div>
+      <div className="flex-none mt-8 flex justify-between w-full max-w-5xl mx-auto">
+        {!isFirstDay ? (
+          <Link href={`/day/${dayNumber - 1}`}>
+            <Button variant="outline" size="lg">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Previous Day
+            </Button>
+          </Link>
+        ) : <div />}
+        {!isLastDay ? (
+          <Link href={`/day/${dayNumber + 1}`}>
+            <Button size="lg">
+              Next Day
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        ) : <div />}
       </div>
     </main>
   );
