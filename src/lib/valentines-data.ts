@@ -142,7 +142,15 @@ I love you, sweetu 😻😻`,
     day: 14,
     title: "Valentine's Day",
     image: getImage('valentine-heart'),
-    letter: `Happy Valentine's Day, my love. Today is a celebration of us, of the beautiful thing we have. You are my valentine today, tomorrow, and every day after. Loving you is the easiest and most natural thing I've ever done. Thank you for filling my life with so much love, joy, and meaning. My heart is yours completely. I love you more than you'll ever know.`,
+    letter: `“You know you’re in love when you can’t fall asleep because reality is finally better than your dreams.”
+
+Now I understand why people say it’s silly to celebrate just one day of love because I want to celebrate our love for a lifetime.
+This day reminds me of how you make my days better, my heavy moments lighter, and my smiles more real. Being with you feels comfortable, happy, and true.
+From admiring you in the morning to wishing you goodnight, I love every moment we share. The number of times I’ve blushed, thrown my phone away, and hidden my face in the blanket because of you… I’ve lost count. Thank you for making my life feel so beautiful, Bhavuu.
+
+Feeling your love, receiving your love it truly feels like a blessing I still don’t know how I got so lucky to receive.
+
+I love you today, tomorrow, and forever, Bhavuu 💕`,
     gif: {
       postId: "2855815952576629853",
       aspectRatio: "1",
