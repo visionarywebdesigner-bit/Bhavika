@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
-import { Handshake, HeartHandshake } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import * as Tone from 'tone';
 import { RoseIcon } from './RoseIcon';
@@ -13,16 +12,18 @@ import { RingIcon } from './RingIcon';
 import { ChocolateIcon } from './ChocolateIcon';
 import { TeddyBearIcon } from './TeddyBearIcon';
 import { HugIcon } from './HugIcon';
+import { PromiseDayIcon } from './PromiseDayIcon';
+import { ValentinesDayIcon } from './ValentinesDayIcon';
 
 const days = [
   { day: 7, title: "Rose Day", icon: RoseIcon, color: 'text-pink-400' },
   { day: 8, title: "Propose Day", icon: RingIcon, color: 'text-red-400' },
   { day: 9, title: "Chocolate Day", icon: ChocolateIcon, color: 'text-rose-400' },
   { day: 10, title: "Teddy Day", icon: TeddyBearIcon, color: 'text-pink-400' },
-  { day: 11, title: "Promise Day", icon: Handshake, color: 'text-red-400' },
+  { day: 11, title: "Promise Day", icon: PromiseDayIcon, color: 'text-red-400' },
   { day: 12, title: "Hug Day", icon: HugIcon, color: 'text-rose-400' },
   { day: 13, title: "Kiss Day", icon: KissIcon, color: 'text-pink-400' },
-  { day: 14, title: "Valentine's Day", icon: HeartHandshake, color: 'text-red-400' },
+  { day: 14, title: "Valentine's Day", icon: ValentinesDayIcon, color: 'text-red-400' },
 ];
 
 const Banner = ({ children, className }: { children: React.ReactNode, className?: string }) => (
