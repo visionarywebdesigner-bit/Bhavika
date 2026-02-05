@@ -56,20 +56,34 @@ const Envelope = ({ onClick }: { onClick: () => void }) => {
 const Letter = ({ onNext }: { onNext: () => void }) => {
   return (
     <div className="absolute inset-0 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md animate-letter-slide-up shadow-2xl bg-card/90 backdrop-blur-sm">
-        <CardContent className="p-8 text-center">
+      <Card className="w-full max-w-lg animate-letter-slide-up shadow-2xl bg-card/90 backdrop-blur-sm">
+        <CardContent className="p-6 md:p-8 text-left max-h-[80vh] overflow-y-auto">
           <p className="font-headline text-3xl text-primary mb-6">Dear Bhavika,</p>
-          <p className="font-body text-lg text-foreground/90 mb-8">
-            Words can't fully express how much you mean to me. You've brought so much light and happiness into my life.
-          </p>
-          <p className="font-headline text-2xl text-foreground">
-            Only Your,
+          <div className="font-body text-base text-foreground/90 space-y-4 mb-8">
+            <p>
+              I never thought I would love someone, Bhavika honestly, not until I truly fell for you. The same guy who was advising his friends in November about why they shouldn’t be dating ended up falling for you himself. But honestly, what could I even do? I never thought love would be on my side too.
+            </p>
+            <p>
+              Those days in December are something I’ll always remember. And you’re right—I often don’t notice things, but that’s because I overthink even the smallest details, and in the process I miss the important things.
+            </p>
+            <p>
+              You have changed my life so much, Bhavika. You brought light into what was honestly a dull life. I can’t explain how much you mean to me. It’s still hard for me to comprehend that you are with me, that I have you in my life.
+            </p>
+            <p>
+              And Bhavika, I’m really sorry. For the past few days, I haven’t been responding well—my replies have been dry, and I know I’ve been annoying you and making you feel sad. Most of that time, I was working on this, but that’s not an excuse. I’m genuinely sorry for making you feel that way.
+            </p>
+            <p>
+              Bhavika, I really, really love you a lot. You can say you love me more, but let’s be real—I do more, Bhavuu.
+            </p>
+          </div>
+          <p className="font-headline text-2xl text-foreground text-right">
+            Yours,
             <br />
             Shree
           </p>
         </CardContent>
       </Card>
-      <div className="absolute bottom-10 right-10 z-10 animate-fade-in animation-delay-2000">
+      <div className="absolute bottom-10 right-10 z-10 animate-fade-in animation-delay-3000">
         <Button onClick={onNext}>Next --&gt;</Button>
       </div>
     </div>
@@ -93,11 +107,11 @@ export function LetterScreen({ onNext }: LetterScreenProps) {
     <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-primary/80 to-primary/50 animate-fade-in">
       <h1
         className={cn(
-          "text-5xl md:text-6xl font-headline text-primary-foreground mb-16 drop-shadow-lg transition-opacity duration-700",
+          "text-5xl md:text-6xl font-headline text-primary-foreground mb-16 drop-shadow-lg transition-opacity duration-700 text-center",
           letterState === 'revealing' && 'opacity-0'
         )}
       >
-        You mean Alot to me......
+        You mean a lot to me...
       </h1>
 
       <div
