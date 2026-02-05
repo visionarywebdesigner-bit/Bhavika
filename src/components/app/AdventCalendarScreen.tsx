@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
-import { Handshake, Users, HeartHandshake } from 'lucide-react';
+import { Handshake, HeartHandshake } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import * as Tone from 'tone';
 import { RoseIcon } from './RoseIcon';
@@ -12,6 +12,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { RingIcon } from './RingIcon';
 import { ChocolateIcon } from './ChocolateIcon';
 import { TeddyBearIcon } from './TeddyBearIcon';
+import { HugIcon } from './HugIcon';
 
 const days = [
   { day: 7, title: "Rose Day", icon: RoseIcon, color: 'text-pink-400' },
@@ -19,7 +20,7 @@ const days = [
   { day: 9, title: "Chocolate Day", icon: ChocolateIcon, color: 'text-rose-400' },
   { day: 10, title: "Teddy Day", icon: TeddyBearIcon, color: 'text-pink-400' },
   { day: 11, title: "Promise Day", icon: Handshake, color: 'text-red-400' },
-  { day: 12, title: "Hug Day", icon: Users, color: 'text-rose-400' },
+  { day: 12, title: "Hug Day", icon: HugIcon, color: 'text-rose-400' },
   { day: 13, title: "Kiss Day", icon: KissIcon, color: 'text-pink-400' },
   { day: 14, title: "Valentine's Day", icon: HeartHandshake, color: 'text-red-400' },
 ];
@@ -99,7 +100,7 @@ export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenPr
                         <p className="font-body text-xs sm:text-sm font-bold text-foreground/90 mt-1 group-hover:text-foreground">
                           {title}
                         </p>
-                        <Icon className={cn("w-6 h-6 mt-2 transition-colors group-hover:scale-125", color)} />
+                        <Icon className={cn("w-8 h-8 mt-2 transition-colors group-hover:scale-125", color)} />
                     </CardContent>
                 </Card>
             </Link>
