@@ -1,3 +1,4 @@
+
 import { PlaceHolderImages, type ImagePlaceholder } from './placeholder-images';
 
 export interface DayContent {
@@ -62,7 +63,7 @@ So… what do you say, baby? 💛`,
     day: 9,
     title: "Chocolate Day",
     image: getImage('chocolates'),
-    letter: `“Life is like a box of chocolates… you never know what you’re gonna get.” But I know I will only get the best days of happiness till the time I have you in my life. You make my life sweeter just by being in it. Even ordinary days feel special with you Bhavika. It is comforting and genuinely happy.
+    letter: `"Life is like a box of chocolates… you never know what you’re gonna get.” But I know I will only get the best days of happiness till the time I have you in my life. You make my life sweeter just by being in it. Even ordinary days feel special with you Bhavika. It is comforting and genuinely happy.
 I may not be there to give you chocolate today, but know this: you’re already the sweetest part of my life.
 Happy Chocolate Day, my favorite sweetness 🤎🍫`,
     gif: {
@@ -76,7 +77,10 @@ Happy Chocolate Day, my favorite sweetness 🤎🍫`,
     day: 10,
     title: "Teddy Day",
     image: getImage('teddy-bear'),
-    letter: `I'm sending this note with the warmth of a thousand teddy bear hugs. Whenever you feel down or just need a little comfort, I hope you think of me and feel my arms around you. Like a favorite teddy, I want to be your source of comfort, your safe place, and your constant companion. Thank you for being my teddy bear, always there to make things better.`,
+    letter: `“Teddy bears don’t need hearts as they are already stuffed with love.” 
+I send you this note with thousands of teddy bears stuffed with my love. Whenever you feel down or just need a little comfort, I hope you think of me and feel my arms around you. It is said Teddy bears are a symbol of comfort, companion, a safe place just like that Like a favorite teddy, I want to be your source of comfort, your safe place, and your constant companion. 
+Thank you for always making things better in my life Bhavika. 
+Mwaahhh 😽`,
     gif: {
       postId: "12913541",
       aspectRatio: "1.10667",
