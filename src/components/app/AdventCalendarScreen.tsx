@@ -14,6 +14,8 @@ import { TeddyBearIcon } from './TeddyBearIcon';
 import { HugIcon } from './HugIcon';
 import { PromiseDayIcon } from './PromiseDayIcon';
 import { ValentinesDayIcon } from './ValentinesDayIcon';
+import { useState, useEffect } from 'react';
+import { Lock } from 'lucide-react';
 
 const days = [
   { day: 7, title: "Rose Day", icon: RoseIcon, color: 'text-pink-400' },
@@ -44,6 +46,12 @@ const cornerImage3 = PlaceHolderImages.find(p => p.id === 'advent-corner-3');
 const cornerImage4 = PlaceHolderImages.find(p => p.id === 'advent-corner-4');
 
 export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenProps) {
+  const [currentDate, setCurrentDate] = useState<Date | null>(null);
+
+  useEffect(() => {
+    // This runs only on the client, after hydration, to avoid server-client mismatch
+    setCurrentDate(new Date());
+  }, []);
   
   const handleDayClick = async () => {
     if (await initializeAudio()) {
@@ -57,6 +65,24 @@ export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenPr
     const s = ["th", "st", "nd", "rd"];
     const v = day % 100;
     return day + (s[(v - 20) % 10] || s[v] || s[0]);
+  };
+
+  const isDayUnlocked = (day: number): boolean => {
+    if (!currentDate) {
+      return false; // Remain locked until we know the date on the client
+    }
+    const today = currentDate.getDate();
+    const currentMonth = currentDate.getMonth(); // February is 1
+    
+    // For this app, we assume the context is always Valentine's week in February.
+    if (currentMonth > 1) { // It's after February, all unlocked
+      return true;
+    }
+    if (currentMonth < 1) { // It's before February, all locked
+      return false;
+    }
+    // It is February, check the day
+    return today >= day;
   };
 
   return (
@@ -86,26 +112,46 @@ export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenPr
         <Banner>Happy Valentines Week</Banner>
 
         <div className="grid grid-cols-4 gap-4">
-          {days.map(({ day, title, icon: Icon, color }) => (
-            <Link href={`/day/${day}`} key={day}>
-                <Card 
-                    onClick={handleDayClick}
-                    className="relative aspect-[3/4] w-28 sm:w-32 flex flex-col items-center justify-center bg-card/90 backdrop-blur-sm border-primary/40 hover:border-primary hover:bg-card transition-all duration-300 transform hover:-translate-y-2 group cursor-pointer shadow-lg hover:shadow-2xl rounded-xl overflow-hidden"
-                >
-                    <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-primary/20 to-transparent"></div>
-                    <CardContent className="relative flex flex-col items-center justify-center text-center p-2 z-10">
-                        <span className="font-headline text-5xl text-primary drop-shadow-md group-hover:scale-110 transition-transform">
-                            {getDayOrdinal(day)}
-                        </span>
-                        <p className="font-body text-xl font-bold text-primary/80 -mt-2">Feb</p>
-                        <p className="font-body text-xs sm:text-sm font-bold text-foreground/90 mt-1 group-hover:text-foreground">
-                          {title}
-                        </p>
-                        <Icon className={cn("w-8 h-8 mt-2 transition-colors group-hover:scale-125", color)} />
-                    </CardContent>
-                </Card>
-            </Link>
-          ))}
+          {days.map(({ day, title, icon: Icon, color }) => {
+            const unlocked = isDayUnlocked(day);
+            
+            const cardComponent = (
+              <Card 
+                  onClick={unlocked ? handleDayClick : undefined}
+                  className={cn(
+                      "relative aspect-[3/4] w-28 sm:w-32 flex flex-col items-center justify-center bg-card/90 backdrop-blur-sm border-primary/40 transition-all duration-300 shadow-lg rounded-xl overflow-hidden",
+                      unlocked ? "hover:border-primary hover:bg-card transform hover:-translate-y-2 group cursor-pointer hover:shadow-2xl" : "opacity-60 cursor-not-allowed saturate-50"
+                  )}
+              >
+                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-primary/20 to-transparent"></div>
+                  <CardContent className="relative flex flex-col items-center justify-center text-center p-2 z-10">
+                      <span className="font-headline text-5xl text-primary drop-shadow-md group-hover:scale-110 transition-transform">
+                          {getDayOrdinal(day)}
+                      </span>
+                      <p className="font-body text-xl font-bold text-primary/80 -mt-2">Feb</p>
+                      <p className="font-body text-xs sm:text-sm font-bold text-foreground/90 mt-1 group-hover:text-foreground">
+                        {title}
+                      </p>
+                      <Icon className={cn("w-8 h-8 mt-2 transition-colors group-hover:scale-125", color)} />
+                  </CardContent>
+                  {!unlocked && (
+                      <div className="absolute inset-0 bg-background/40 flex items-center justify-center z-20">
+                        <Lock className="w-8 h-8 text-foreground/60" />
+                      </div>
+                    )}
+              </Card>
+            );
+
+            if (unlocked) {
+              return (
+                <Link href={`/day/${day}`} key={day}>
+                  {cardComponent}
+                </Link>
+              );
+            }
+
+            return <div key={day}>{cardComponent}</div>;
+          })}
         </div>
         
         <Banner>Forever & Always</Banner>

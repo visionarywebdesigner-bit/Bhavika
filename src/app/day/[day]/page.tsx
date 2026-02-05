@@ -1,29 +1,59 @@
 'use client';
 
 import { valentinesData } from '@/lib/valentines-data';
-import { notFound } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function DayLetterPage({ params }: { params: { day: string } }) {
   const dayNumber = parseInt(params.day, 10);
   const dayContent = valentinesData.find(d => d.day === dayNumber);
+  const router = useRouter();
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    // Prevent direct access to future days
+    const now = new Date();
+    const today = now.getDate();
+    const currentMonth = now.getMonth(); // February is 1
+    
+    let unlocked = false;
+    if (currentMonth > 1) { // After February
+      unlocked = true;
+    } else if (currentMonth === 1) { // During February
+      unlocked = today >= dayNumber;
+    }
+
+    if (!unlocked) {
+      router.replace('/advent');
+    } else {
+      setIsReady(true);
+    }
+  }, [dayNumber, router]);
 
   useEffect(() => {
     // Prevent loading the script multiple times
-    if (!document.querySelector('script[src="https://tenor.com/embed.js"]')) {
+    if (isReady && !document.querySelector('script[src="https://tenor.com/embed.js"]')) {
       const script = document.createElement("script");
       script.src = "https://tenor.com/embed.js";
       script.async = true;
       document.body.appendChild(script);
     }
-  }, []);
+  }, [isReady]);
 
 
   if (!dayContent) {
     notFound();
+  }
+
+  if (!isReady) {
+    return (
+      <main className="min-h-screen bg-gradient-to-b from-primary/10 to-accent flex items-center justify-center">
+        <div className="text-foreground text-xl font-headline">Loading...</div>
+      </main>
+    );
   }
 
   const isFirstDay = dayNumber === 7;
