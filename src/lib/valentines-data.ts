@@ -113,7 +113,11 @@ And most importantly, Bhavika, I promise to love you the same way I do every sin
     day: 12,
     title: "Hug Day",
     image: getImage('couple-hugging'),
-    letter: `There's a special magic in your hugs. They can mend a bad day, calm a racing heart, and say "I love you" without a single word. I'm sending you a virtual hug right now, one that's big enough to last until I can hold you in my arms again. I can't wait to feel your hug, the safest and most wonderful place in the world.`,
+    letter: `“A hug is worth a thousand words.” Maybe we can't hug right now or we just haven't hugged each other due to my stupidity and nature but I just wish I could Hug you today, right now and tell you how much I love you bhavu. 
+
+I often just open my gallery a picture of you and hug it to feel calm, to feel happy, to feel love once again bhavika. 
+I miss you right now alot while writing this. 
+I miss you sooo much bhavika right now💗`,
     gif: {
       postId: "23912005",
       aspectRatio: "1.24031",
