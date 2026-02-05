@@ -62,7 +62,9 @@ So… what do you say, baby? 💛`,
     day: 9,
     title: "Chocolate Day",
     image: getImage('chocolates'),
-    letter: `Like a box of assorted chocolates, our life together is full of sweet surprises, rich moments, and comforting delights. Each memory we create is a different flavor, and I cherish them all. You make my life sweeter just by being in it. I hope this note brings you a taste of the joy and sweetness you bring to me every day. You're more delicious than any chocolate.`,
+    letter: `“Life is like a box of chocolates… you never know what you’re gonna get.” But I know I will only get the best days of happiness till the time I have you in my life. You make my life sweeter just by being in it. Even ordinary days feel special with you Bhavika. It is comforting and genuinely happy.
+I may not be there to give you chocolate today, but know this: you’re already the sweetest part of my life.
+Happy Chocolate Day, my favorite sweetness 🤎🍫`,
     gif: {
       postId: "10146924857693137830",
       aspectRatio: "1",
