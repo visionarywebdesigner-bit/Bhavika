@@ -20,11 +20,22 @@ export default function DayLetterPage({ params }: { params: { day: string } }) {
     const currentMonth = now.getMonth(); // February is 1
     
     let unlocked = false;
-    if (currentMonth > 1) { // After February
-      unlocked = true;
-    } else if (currentMonth === 1) { // During February
-      unlocked = today >= dayNumber;
+
+    // --- TESTING LOGIC ---
+    if (dayNumber === 7) {
+      unlocked = today >= 5 && currentMonth === 1;
+    } else if (dayNumber === 8) {
+      unlocked = today >= 5 && currentMonth === 1;
+    } else if (dayNumber === 9) {
+      unlocked = today >= 4 && currentMonth === 1;
+    } else {
+        if (currentMonth > 1) { // After February
+          unlocked = true;
+        } else if (currentMonth === 1) { // During February
+          unlocked = today >= dayNumber;
+        }
     }
+    // --- END TESTING LOGIC ---
 
     if (!unlocked) {
       router.replace('/advent');
