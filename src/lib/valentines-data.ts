@@ -47,7 +47,10 @@ Happy Rose Day to my rose 🌹🌹`,
     day: 8,
     title: "Propose Day",
     image: getImage('proposal-ring'),
-    letter: `On this day of proposals, I don't have a diamond ring, but I offer you something far more precious: my whole heart. I propose we continue this beautiful journey together, building a future filled with laughter, support, and endless love. I propose we keep choosing each other, every single day. Being with you feels like coming home, and I want to spend all my tomorrows with you. What do you say?`,
+    letter: `“You are my today and all of my tomorrows.”
+Someone once said that and honestly, I want you to be my today and all my tomorrows, Bhavu. It still feels like living a dream that how close we’ve grown in such a short time. Sometimes I find myself dreaming about the days which are yet to come- meeting your parents, building a life together, and yes… even day of marriage(sorry, kya karu, pyaar toh pyaar hota hai). I truly believe I’ve found the one my soul loves—the one who completes me. 
+I want to spend all my tomorrows with you, Bhavika.
+So… what do you say, baby? 💛`,
     gif: {
       postId: "26865197",
       aspectRatio: "1.37339",
@@ -83,10 +86,7 @@ Happy Rose Day to my rose 🌹🌹`,
     day: 11,
     title: "Promise Day",
     image: getImage('promise-hands'),
-    letter: `“You are my today and all of my tomorrows.”
-Someone once said that and honestly, I want you to be my today and all my tomorrows, Bhavu. It still feels like living a dream that how close we’ve grown in such a short time. Sometimes I find myself dreaming about the days which are yet to come- meeting your parents, building a life together, and yes… even day of marriage(sorry, kya karu, pyaar toh pyaar hota hai). I truly believe I’ve found the one my soul loves—the one who completes me. 
-I want to spend all my tomorrows with you, Bhavika.
-So… what do you say, baby? 💛`,
+    letter: `On this day of proposals, I don't have a diamond ring, but I offer you something far more precious: my whole heart. I propose we continue this beautiful journey together, building a future filled with laughter, support, and endless love. I propose we keep choosing each other, every single day. Being with you feels like coming home, and I want to spend all my tomorrows with you. What do you say?`,
     gif: {
       postId: "8762800",
       aspectRatio: "1.32143",
