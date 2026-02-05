@@ -83,7 +83,10 @@ Happy Rose Day to my rose 🌹🌹`,
     day: 11,
     title: "Promise Day",
     image: getImage('promise-hands'),
-    letter: `Today, I want to make you a few promises. I promise to always listen, even when I don't understand. I promise to support your dreams, no matter how big or small. I promise to be your biggest fan and your shoulder to cry on. But most of all, I promise to love you unconditionally, to cherish you, and to always, always be on your side. My heart is promised to you.`,
+    letter: `“You are my today and all of my tomorrows.”
+Someone once said that and honestly, I want you to be my today and all my tomorrows, Bhavu. It still feels like living a dream that how close we’ve grown in such a short time. Sometimes I find myself dreaming about the days which are yet to come- meeting your parents, building a life together, and yes… even day of marriage(sorry, kya karu, pyaar toh pyaar hota hai). I truly believe I’ve found the one my soul loves—the one who completes me. 
+I want to spend all my tomorrows with you, Bhavika.
+So… what do you say, baby? 💛`,
     gif: {
       postId: "8762800",
       aspectRatio: "1.32143",
