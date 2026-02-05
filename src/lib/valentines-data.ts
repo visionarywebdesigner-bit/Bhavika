@@ -94,14 +94,10 @@ Mwaahhh 😽`,
     image: getImage('promise-hands'),
     letter: `“Promises are the uniquely human way of ordering the future.” And Bhavika, this is me ordering my future with you.
 
-I promise that ki always be there for you.
-I promise that ki I am with you, truly and completely.
-And I promise that ki we will share our future together.
+I promise that ki always be there for you. I promise that ki I am with you, truly and completely. And I promise that ki we will share our future together.
 
-I genuinely mean it when I say—you’re stuck with me. Just like you told me once, and I’m holding on to that. I promise I’ll never let you leave me. 
-
-I promise to stand with you, support you, and cherish our love forever.
-And most importantly, Bhavika, I promise to love you the same way I do every single day.`,
+I genuinely mean it when I say—you’re stuck with me. Just like you told me once, and I’m holding on to that. I promise I’ll never let you leave me.
+I promise to stand with you, support you, and cherish our love forever. And most importantly, Bhavika, I promise to love you the same way I do every single day 🫶🫶`,
     gif: {
       postId: "8762800",
       aspectRatio: "1.32143",
