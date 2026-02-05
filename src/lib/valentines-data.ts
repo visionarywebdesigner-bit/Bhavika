@@ -31,7 +31,11 @@ export const valentinesData: DayContent[] = [
     day: 7,
     title: "Rose Day",
     image: getImage('rose-bouquet'),
-    letter: `This red rose carries everything my heart feels when it thinks of you. It holds the warmth of our conversations, the comfort of your presence, and the quiet certainty that loving you is the best decision I've ever made. Even when the distance feels heavy, my love for you never does. It grows deeper, steadier, and more certain with every passing day. You are the person my heart runs to, even when my body can't. This rose is my way of saying: I love you not just in words, but in patience, trust, and commitment. Today, tomorrow, and always my heart is yours.`,
+    letter: `“A rose by any other name would smell as sweet.”
+In the same way, my love for you remains same no matter the form, no matter the distance.
+Bhavika This year I am not able to actually give you roses, but maybe next year, hopefully I’ll be with you, right next to you, even if only for part of the day. How that will happen, idk I haven’t figured out yet. What I have figured out is this: choosing to love you has been the best decision I’ve ever made.
+
+Happy Rose Day to my rose 🌹🌹`,
     gif: {
       postId: "21256849",
       aspectRatio: "1.02894",
