@@ -76,18 +76,6 @@ export function AdventCalendarScreen({ initializeAudio }: AdventCalendarScreenPr
     
     // For this app, we assume the context is always Valentine's week in February.
     
-    // --- TESTING LOGIC ---
-    if (day === 7) {
-        return today >= 5 && currentMonth === 1;
-    }
-    if (day === 8) {
-        return today >= 5 && currentMonth === 1;
-    }
-    if (day === 9) {
-        return today >= 4 && currentMonth === 1;
-    }
-    // --- END TESTING LOGIC ---
-
     if (currentMonth > 1) { // It's after February, all unlocked
       return true;
     }

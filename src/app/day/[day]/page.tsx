@@ -14,28 +14,24 @@ export default function DayLetterPage({ params }: { params: { day: string } }) {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    // Prevent direct access to future days
+    // Prevent direct access to future days.
+    // This logic must run on the client to get the current date.
     const now = new Date();
     const today = now.getDate();
-    const currentMonth = now.getMonth(); // February is 1
-    
+    const currentMonth = now.getMonth(); // January is 0, February is 1
+
     let unlocked = false;
 
-    // --- TESTING LOGIC ---
-    if (dayNumber === 7) {
-      unlocked = today >= 5 && currentMonth === 1;
-    } else if (dayNumber === 8) {
-      unlocked = today >= 5 && currentMonth === 1;
-    } else if (dayNumber === 9) {
-      unlocked = today >= 4 && currentMonth === 1;
-    } else {
-        if (currentMonth > 1) { // After February
-          unlocked = true;
-        } else if (currentMonth === 1) { // During February
-          unlocked = today >= dayNumber;
-        }
+    // After February, all days are permanently unlocked.
+    if (currentMonth > 1) {
+      unlocked = true;
+    } 
+    // During February, unlock on or after the specific day.
+    else if (currentMonth === 1) { 
+      unlocked = today >= dayNumber;
     }
-    // --- END TESTING LOGIC ---
+    // Before February (e.g., January), all days are locked.
+    // unlocked remains false.
 
     if (!unlocked) {
       router.replace('/advent');
