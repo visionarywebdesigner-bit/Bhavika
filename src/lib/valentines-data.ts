@@ -69,7 +69,7 @@ Happy Chocolate Day, my favorite sweetness 🤎🍫`,
     gif: {
       postId: "10146924857693137830",
       aspectRatio: "1",
-      url: "https://tenor.com/view/valentine-valentine-day-chocolates-%EC%B4%88%EC%BD%9C%EB%A0%9B%EB%B0%94-%EB%B0%9C%EB%A0%8C%ED%83%80%EC%9D%B8-%EB%8D%B0%EC%9D%B4-gif-10146924857693137830",
+      url: "https://tenor.com/view/valentine-valentine-day-chocolates-%EC%B4%88%EC%BD%9C%EB%A0%9B%EB%B0%94-%EB%B0%9C%EB%A0%8C%ED%83%80%EC%9D%B4-%EB%8D%B0%EC%9D%B4-gif-10146924857693137830",
       title: "Valentine Valentine Day Sticker"
     }
   },
@@ -125,7 +125,12 @@ I miss you sooo much bhavika right now💗`,
     day: 13,
     title: "Kiss Day",
     image: getImage('couple-kissing'),
-    letter: `Every kiss we share tells a story. From our first nervous kiss to the comfortable, everyday ones, each is a reminder of the love that connects us. A kiss from you is a jolt of happiness, a moment of pure bliss. I'm counting down the moments until our next one. Get ready, because I have a lot of them saved up for you!`,
+    letter: `“Kissing is a means of getting two people so close together that they can see nothing wrong with each other.”
+Bhavika, of course we’re not there yet. We’re still young—just two teenagers in love, learning, growing, figuring things out. But someday, I’d like to be that close to you too.
+For now, just the thought of you is enough to make me smile, calm me down, and feel complete. And when that moment does come, it won’t be just a kiss. It’ll be comfort, trust, love—and everything we’ve been building together.
+
+Until then, Bhavika, you already have my heart anyway, cutu.
+I love you, sweetu 😻😻`,
     gif: {
       postId: "1133735389315497118",
       aspectRatio: "1.23333",
