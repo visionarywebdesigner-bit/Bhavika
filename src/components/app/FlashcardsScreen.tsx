@@ -5,12 +5,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { HeartIcon } from "./HeartIcon";
-import { KissIcon } from "./KissIcon";
 import { RibbonIcon } from "./RibbonIcon";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { WomensBowIcon } from "./WomensBowIcon";
 import { SparklingIcon } from "./SparklingIcon";
+import { SmallHeartsIcon } from "./SmallHeartsIcon";
 
 interface FlashcardsScreenProps {
   onNext: () => void;
@@ -96,7 +96,7 @@ export function FlashcardsScreen({ onNext }: FlashcardsScreenProps) {
                   <RibbonIcon className="absolute top-4 right-4 w-10 h-10 text-primary/30 rotate-12" />
                   <WomensBowIcon className="absolute top-4 left-4 w-12 h-12 text-primary/20 -rotate-12" />
                   <SparklingIcon className="absolute top-12 right-4 w-8 h-8 text-primary/10 rotate-12" />
-                  <KissIcon className="absolute bottom-20 left-6 w-6 h-6 text-primary/30 rotate-45" />
+                  <SmallHeartsIcon className="absolute bottom-20 left-6 w-12 h-12 text-primary/30 rotate-45" />
                   <WomensBowIcon className="absolute bottom-4 right-12 w-12 h-12 text-primary/20 -rotate-45" />
                   <SparklingIcon className="absolute bottom-4 left-12 w-8 h-8 text-primary/10 rotate-12" />
                   <div className="flex flex-col items-center justify-center gap-4">
