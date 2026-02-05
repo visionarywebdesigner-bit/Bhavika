@@ -2,14 +2,25 @@
 
 import { valentinesData } from '@/lib/valentines-data';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 export default function DayLetterPage({ params }: { params: { day: string } }) {
   const dayNumber = parseInt(params.day, 10);
   const dayContent = valentinesData.find(d => d.day === dayNumber);
+
+  useEffect(() => {
+    // Prevent loading the script multiple times
+    if (!document.querySelector('script[src="https://tenor.com/embed.js"]')) {
+      const script = document.createElement("script");
+      script.src = "https://tenor.com/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
 
   if (!dayContent) {
     notFound();
@@ -34,14 +45,16 @@ export default function DayLetterPage({ params }: { params: { day: string } }) {
             <h1 className="text-foreground font-headline text-4xl md:text-5xl mb-6">{dayContent.title}</h1>
             <p className="whitespace-pre-line text-base md:text-lg leading-relaxed">{dayContent.letter}</p>
           </div>
-          <div className="relative aspect-square md:aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
-            <Image
-              src={dayContent.image.imageUrl}
-              alt={dayContent.image.description}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+          <div className="flex justify-center items-center">
+             <div
+                className="tenor-gif-embed mx-auto my-4 rounded-md overflow-hidden"
+                data-postid={dayContent.gif.postId}
+                data-share-method="host"
+                data-aspect-ratio={dayContent.gif.aspectRatio}
+                data-width="100%"
+            >
+                <a href={dayContent.gif.url}>{dayContent.gif.title}</a>
+            </div>
           </div>
         </div>
       </div>
